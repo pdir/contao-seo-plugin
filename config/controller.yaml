@@ -1,0 +1,7 @@
+services:
+
+    Pdir\ContaoSeoPlugin\Controller\IndexNowTxtController:
+      public: true
+      arguments:
+#        - '@contao.routing.page_finder'
+        - '@contao.framework'

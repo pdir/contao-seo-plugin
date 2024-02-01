@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    pdir.contao_seo_plugin.listener.data_container.backend_usability:
+        class: Pdir\ContaoSeoPlugin\EventListener\DataContainer\BackendUsabilityListener
+
+    pdir.contao_seo_plugin.listener.data_container.page_listener:
+        class: Pdir\ContaoSeoPlugin\EventListener\DataContainer\PageListener
+
+    pdir.contao_seo_plugin.listener.output_frontend_template_listener:
+      class: Pdir\ContaoSeoPlugin\EventListener\OutputFrontendTemplateListener

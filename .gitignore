@@ -1,0 +1,15 @@
+# Composer
+/composer.lock
+/vendor/
+
+# PhpUnit
+/.phpunit.result.cache
+/phpunit.xml
+
+# Tools
+/tools/*/vendor
+
+/runner/data
+/runner/node_modules
+/runner/.env
+/runner/.env.local

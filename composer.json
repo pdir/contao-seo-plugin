@@ -1,0 +1,75 @@
+{
+    "name": "pdir/contao-seo-plugin",
+    "description": "SEO plugin for Contao CMS",
+    "keywords":["seo", "indexnow","marketing","ranking","pagespeed", "contao", "search engine optimization", "onpage", "content", "tips"],
+    "license":"LGPL-3.0-or-later",
+    "type": "contao-bundle",
+    "authors": [
+        {
+            "name": "Webdesign für Dresden",
+            "homepage": "https://pdir.de/contao-seo-plugin",
+            "email": "develop@pdir.de",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://pdir.de",
+    "support": {
+        "issues": "https://github.com/pdir/contao-seo-plugin/issues",
+        "source": "https://github.com/pdir/contao-seo-plugin"
+    },
+    "require": {
+        "php": "^8.1",
+        "contao/core-bundle": "^4.13 ||^5.0",
+        "pdir/contao-webtools": "^1.5",
+        "symfony/config": "^5.4 || ^6.2",
+        "symfony/dependency-injection": "^5.4 || ^6.2",
+        "symfony/http-kernel": "^5.4 || ^6.2",
+        "composer-runtime-api": "^2.1"
+    },
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.5",
+        "contao/easy-coding-standard": "^3.0",
+        "contao/manager-plugin": "^2.0",
+        "phpunit/phpunit": "^9.5",
+        "symfony/phpunit-bridge": "^6.1"
+    },
+    "conflict": {
+        "contao/manager-plugin": "<2.0 || >=3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pdir\\ContaoSeoPlugin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pdir\\ContaoSeoPlugin\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true,
+            "contao-components/installer": true,
+            "contao/manager-plugin": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": true
+        }
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": false,
+            "target-directory": "tools"
+        },
+        "contao-manager-plugin": "Pdir\\ContaoSeoPlugin\\ContaoManager\\Plugin"
+    },
+    "scripts": {
+        "all": [
+            "@unit-tests",
+            "@ecs",
+            "@phpstan"
+        ],
+        "ecs": "@php tools/ecs/vendor/bin/ecs check src tests --config ecs.php --fix --ansi",
+        "phpstan": "@php tools/phpstan/vendor/bin/phpstan analyze --ansi",
+        "unit-tests": "@php vendor/bin/phpunit --colors=always"
+    }
+}

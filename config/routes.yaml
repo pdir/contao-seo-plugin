@@ -1,0 +1,3 @@
+pdir_contao_seo.controller:
+  resource: ../src/Controller
+  type: annotation
