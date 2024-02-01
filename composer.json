@@ -6,7 +6,7 @@
     "type": "contao-bundle",
     "authors": [
         {
-            "name": "Webdesign für Dresden",
+            "name": "Contao SEO Plugin",
             "homepage": "https://pdir.de/contao-seo-plugin",
             "email": "develop@pdir.de",
             "role": "Developer"
