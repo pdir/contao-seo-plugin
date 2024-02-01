@@ -20,6 +20,8 @@ plugin, you have the most important on-page factors directly in view.
 - Automate missing captions
 - Insert links to explanations for each test
 
+**Acknowledgments**
+The first version of this extension was created as part of a two-week student internship, thanks Markus.
 
 ## German
 
@@ -42,3 +44,5 @@ Mit dem Contao SEO Plugin hast du die wichtigsten OnPage Faktoren direkt im Blic
 - Fehlende Bildunterschriften automatisieren
 - Links zu Erläuterungen für jeden Test
 
+**Danksagung**
+Die erste Version dieser Erweiterung ist im Rahmen eines zweiwöchigen Schülerpraktikums entstanden, Danke Markus.
