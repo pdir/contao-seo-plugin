@@ -18,6 +18,7 @@ plugin, you have the most important on-page factors directly in view.
 - Import redirects via CSV
 - Position history for keywords, pages and posts
 - Automate missing captions
+- Insert links to explanations for each test
 
 
 ## German
@@ -39,4 +40,5 @@ Mit dem Contao SEO Plugin hast du die wichtigsten OnPage Faktoren direkt im Blic
 - Import von Weiterleitungen per CSV
 - Positionsverlauf für Keywords, Seiten und Beiträgen
 - Fehlende Bildunterschriften automatisieren
+- Links zu Erläuterungen für jeden Test
 
