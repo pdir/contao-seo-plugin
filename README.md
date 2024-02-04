@@ -6,7 +6,7 @@ helps users to optimize their content and make it easy to find for both users an
 plugin, you have the most important on-page factors directly in view.
 
 ### Current range of functions of version 1.0.0
-- SEO analysis of 7 typical on-page problems
+- SEO analysis of 8 typical on-page problems
 - IndexNow function for all known providers [indexnow.org](https://www.indexnow.org/faq)
 
 ### An outlook on further functions

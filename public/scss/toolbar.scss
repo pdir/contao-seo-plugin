@@ -141,6 +141,10 @@
       transition: transform 0.25s ease-out;
     }
 
+    &:hover {
+      cursor: pointer;
+    }
+
     &:hover:after {
       transform: scaleX(1);
       transform-origin: bottom left;
@@ -178,4 +182,41 @@
     }
   }
 
+  .csp-robots {
+    background: #222;
+    display: inline-block;
+    color: #fff;
+    border-radius: 10px;
+    padding: 2px 7px 2px 7px;
+    margin-top: 10px;
+
+    &:before {
+      margin-left: -32px;
+    }
+  }
+
+  .csp-toolbar-footer {
+    position: fixed;
+    height: 30px;
+    border-top: 1px solid #e0e0e0;
+    width: 300px;
+    bottom: 0;
+    z-index: 9999100002;
+
+    .csp-button {
+      color: #222;
+      background: none;
+      padding: 0;
+    }
+  }
+}
+
+body {
+  &.pdir-seoToolbar--hidden.pdir-seoToolbar--normal {
+    margin-right: 0;
+  }
+
+  &.pdir-seoToolbar--visible.pdir-seoToolbar--normal {
+    margin-right: 300px;
+  }
 }

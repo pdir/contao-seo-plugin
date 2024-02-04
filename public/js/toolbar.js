@@ -15,6 +15,7 @@ const
       'toolbarHeadline': 'SEO Toolbar',
       'buttonHide': 'Toolbar ausblenden',
       'buttonIndexNow': 'IndexNow',
+      'buttonOverlap': 'Layout wechseln',
       'seoAuditHeadline': 'SEO-Audit',
       'mainKeywordNotExistsCheck': 'Gib das Hauptkeyword für diese Seite an.',
       'mainKeywordTitleCheckSuccess': 'Perfekt, das Hauptkeyword ist im Titel enthalten.',
@@ -53,7 +54,20 @@ function init () {
     body = document.querySelector('body')
   ;
 
-  // add toolbar to html
+  // Initialize toolbar
+  if ('hidden' === localStorage.getItem('pdir/seoToolbar/displayState')) {
+    body.classList.add('pdir-seoToolbar--hidden');
+  } else {
+    body.classList.add('pdir-seoToolbar--visible');
+  }
+
+  if ('normal' === localStorage.getItem('pdir/seoToolbar/layoutState')) {
+    body.classList.add('pdir-seoToolbar--normal');
+  } else {
+    body.classList.add('pdir-seoToolbar--overlapped');
+  }
+
+  // Add toolbar to html
   // <div class="csp-toolbar"><button class="csp-button" role="button">🔍</button></div>
   let toolbar= document.createElement('div');
   toolbar.className = 'csp-toolbar';
@@ -117,13 +131,28 @@ function init () {
 
   // add close button
   button = document.createElement('div');
-  button.textContent = 'x';
+  button.textContent = '✕';
   button.setAttribute('title', cspMessages[cspLang]['buttonHide']);
   button.className = 'csp-button csp-hide-toolbar';
 
   // event
   button.addEventListener( 'click', function (event) {
+    // Collapse toolbar
+    const toolbar = document.getElementById('cspToolbar');
+    if (body.classList.contains('pdir-seoToolbar--hidden')) {
+      localStorage.setItem('pdir/seoToolbar/displayState', 'visible');
+      body.classList.add('pdir-seoToolbar--visible');
+      body.classList.remove('pdir-seoToolbar--hidden');
+      document.getElementsByClassName('csp-hide-toolbar')[0].innerHTML = '✕';
+    } else {
+      localStorage.setItem('pdir/seoToolbar/displayState', 'hidden');
+      body.classList.add('pdir-seoToolbar--hidden');
+      body.classList.remove('pdir-seoToolbar--visible');
+      document.getElementsByClassName('csp-hide-toolbar')[0].innerHTML = '＋';
+    }
+
     toggleElement('cspToolbarBody');
+    toggleElement('cspToolbarFooter');
     toggleClass('cspToolbar', 'closed');
   });
 
@@ -226,6 +255,21 @@ function init () {
 
   tBody.append(text); totalTests++;
 
+  // robots meta check
+  text = document.createElement('div');
+  text.className = 'csp-check csp-robots csp-icon';
+  text.textContent = getMeta('robots');
+  if ('index,follow' === getMeta('robots')) {
+    text.className += ' csp-success';
+  } else if('index,nofollow' === getMeta('robots')) {
+    text.className += ' csp-warning';
+  } else {
+    text.className += ' csp-fail';
+    totalFails++;
+  }
+
+  tBody.append(text); totalTests++;
+
   // section 2
   panel = document.createElement('div');
   panel.setAttribute('id', 'cspPanel1');
@@ -289,6 +333,35 @@ function init () {
   toolbar.append(tHeader);
   toolbar.append(tBody);
 
+  // fixed toolbar
+  container = document.createElement('div');
+  container.setAttribute('id', 'cspToolbarFooter');
+  container.className = 'csp-toolbar-footer';
+
+  // add layout overlapped button
+  button = document.createElement('div');
+  button.textContent = '🗗';
+  button.setAttribute('title', cspMessages[cspLang]['buttonOverlap']);
+  button.className = 'csp-button csp-overlap';
+
+  // event
+  button.addEventListener( 'click', function (event) {
+    // change toolbar layout
+    if (body.classList.contains('pdir-seoToolbar--normal')) {
+      localStorage.setItem('pdir/seoToolbar/layoutState', 'overlapped');
+      body.classList.add('pdir-seoToolbar--overlapped');
+      body.classList.remove('pdir-seoToolbar--normal');
+    } else {
+      localStorage.setItem('pdir/seoToolbar/layoutState', 'normal');
+      body.classList.add('pdir-seoToolbar--normal');
+      body.classList.remove('pdir-seoToolbar--overlapped');
+    }
+  });
+
+  container.append(button);
+  toolbar.append(container);
+  // \end fixed toolbar
+
   body.append(toolbar);
 
   // update total
@@ -302,6 +375,12 @@ function init () {
     total.classList.add('neutral');
   } else if (percent < totalFailPercent) {
     total.classList.add('fail');
+  }
+
+  // set display state
+  if ('hidden' === localStorage.getItem('pdir/seoToolbar/displayState')) {
+    toolbar.classList.add('closed');
+    toggleElement('cspToolbarBody');
   }
 }
 
@@ -327,7 +406,7 @@ function indexNow () {
 }
 
 async function sendUrlToSearchEngine (engine) {
-  let url = 'https://'+cspSearchEngines[engine]+'/indexnow?url='+cspCurrentUrl+'&key='+cspIndexNowKey;
+  let url = 'https://'+cspSearchEngines[engine]+'/indexnow?url='+cspCurrentUrl+'&key=indexNow'+cspIndexNowKey;
   const response = await fetch(url);
   const res = await response;
   // @todo implement error handling
@@ -347,7 +426,7 @@ function getMeta(metaName) {
 }
 
 function contains(str, searchStr) {
-  if(str.includes(searchStr) || str.includes(searchStr.toLowerCase()))
+  if(str.includes(searchStr) || str.includes(searchStr.toLowerCase()) || str.toLowerCase().includes(searchStr.toLowerCase()))
     return true;
 
   return false;

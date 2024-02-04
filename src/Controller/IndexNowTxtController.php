@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/{key}.txt', name: IndexNowTxtController::class, defaults: ['_scope' => 'frontend'])]
+#[Route('/indexNow{key}.txt', name: IndexNowTxtController::class, defaults: ['_scope' => 'frontend'])]
 #[AsController]
 class IndexNowTxtController
 {
