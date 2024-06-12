@@ -27,7 +27,7 @@ plugin, you have the most important on-page factors directly in view.
 The first version of this extension was created as part of a two-week student internship, thanks Markus.
 Thanks also to [terminal42](https://github.com/terminal42/) for the [URL Rewrite Bundle](https://github.com/terminal42/contao-url-rewrite).
 
-** Screenshots **
+**Screenshots**
 
 ![SEO toolbar](_docs/screenshots/seo-toolbar.png)
 ![Keyword settings](_docs/screenshots/keyword-settings.png)
