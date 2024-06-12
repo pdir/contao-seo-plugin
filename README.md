@@ -30,11 +30,22 @@ Thanks also to [terminal42](https://github.com/terminal42/) for the [URL Rewrite
 **Screenshots**
 
 ![SEO toolbar](_docs/screenshots/seo-toolbar.png)
+SEO toolbar
+
 ![Keyword settings](_docs/screenshots/keyword-settings.png)
+Keyword settings
+
 ![IndexNow settings](_docs/screenshots/indexnow-settings.png)
+IndexNow settings
+
 ![Monitoring of alias changes](_docs/screenshots/alias-rewrite-example.png)
+Monitoring of alias changes
+
 ![Display existing URL redirects in the alias view](_docs/screenshots/url-rewrites-for-given-page.png)
+Display existing URL redirects in the alias view
+
 ![404 error log](_docs/screenshots/404-error-log.png)
+404 error log
 
 ## German
 
