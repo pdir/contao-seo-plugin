@@ -2,5 +2,10 @@
 
 declare(strict_types=1);
 
-$GLOBALS['TL_LANG']['tl_news']['contaoSeoMainKeyword'] = ['Hauptkeyword', 'Wähle das Hauptkeyword aus den thematisch passenden Keywords aus (in der Regel das Keyword mit dem höchsten Suchvolumen) – dies ist mit einem Marketing Miner Tool oder einem Keyword Report leicht möglich.'];
-$GLOBALS['TL_LANG']['tl_news']['contaoSeoSecondaryKeywords'] = ['Sekundäre Keywords', 'Sekundäre Keywords ergänzen das Hauptkeyword und helfen dabei den Artikelinhalt besser zu erstellen.'];
+$GLOBALS['TL_LANG']['tl_news']['contaoSeoMainKeyword'] = $GLOBALS['TL_LANG']['tl_page']['contaoSeoMainKeyword'];
+$GLOBALS['TL_LANG']['tl_news']['contaoSeoSecondaryKeywords'] = $GLOBALS['TL_LANG']['tl_page']['contaoSeoSecondaryKeywords'];
+$GLOBALS['TL_LANG']['tl_news']['urlRewriteList'] = $GLOBALS['TL_LANG']['tl_page']['urlRewriteList'];
+$GLOBALS['TL_LANG']['tl_news']['responseCode'] = $GLOBALS['TL_LANG']['tl_page']['responseCode'];
+$GLOBALS['TL_LANG']['tl_news']['rewriteStatusActive'] = $GLOBALS['TL_LANG']['tl_page']['rewriteStatusActive'];
+$GLOBALS['TL_LANG']['tl_news']['rewriteStatusInactive'] = $GLOBALS['TL_LANG']['tl_page']['rewriteStatusInactive'];
+$GLOBALS['TL_LANG']['tl_news']['rewriteListNoItems'] = $GLOBALS['TL_LANG']['tl_page']['rewriteListNoItems'];

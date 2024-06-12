@@ -1,0 +1,140 @@
+{% trans_default_domain 'contao_tl_page' %}
+<div class="widget clr url-rewrite-list">
+  <h3>{{ 'tl_page.urlRewriteList.0'|trans }} für {{ domain }}</h3>
+  <ul id="UrlRewriteList">
+    {% if rewrites is null %}
+      <p style="margin-bottom:0;">{{ 'tl_page.rewriteListNoItems'|trans }}</p>
+    {% endif %}
+    <li id="url_rewrite_list_add_new" class="new">
+      <span class="status green plus">＋</span>
+      <span class="response-code" title="{{ 'tl_page.responseCode'|trans }}">301</span>
+      <span class="grey" title="{{ 'tl_page.routePriority.0'|trans }}">0</span>
+      <span id="rewrite_new_path" class="path">/{{ alias }}{{ suffix }}</span>
+      &nbsp; →
+      <span id="rewrite_new"
+            class="path rewrite-preview-url alias-changed">{{ protocol }}{{ domain }}/{{ alias }}{{ suffix }}</span>
+    </li>
+    {% for rewrite in rewrites %}
+      <li>
+        <span class="url-rewrite-status status{% if rewrite.inactive == 0 %} green{% else %} red{% endif %}"
+              title="{% if rewrite.inactive == 0 %}{{ 'tl_page.rewriteStatusActive'|trans }}{% else %}{{ 'tl_page.rewriteStatusInactive'|trans }}{% endif %}">⟳</span>
+        <span class="response-code" title="{{ 'tl_page.responseCode'|trans }}">{{ rewrite.responseCode }}</span>
+        <span class="grey" title="{{ 'tl_page.routePriority.0'|trans }}">{{ rewrite.priority }}</span>
+        <span class="path">{{ rewrite.requestPath }}</span>
+        &nbsp; →
+        <span class="alias-changed"></span>
+        <span id="rewrite_id_{{ rewrite.id }}" class="path rewrite-response-uri">{{ rewrite.responseUri }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+  <p class="tl_help tl_tip" title="">{{ 'tl_page.urlRewriteList.1'|trans }}</p>
+</div>
+<script>
+  window.addEvent('domready', function () {
+    let urlRewriteAlias = '{{ alias }}';
+    let urlRewriteSuffix = '{{ suffix }}';
+    let urlRewriteDomain = '{{ domain }}';
+    let urlRewriteProtocol = '{{ protocol }}';
+
+    const aliasField = document.getElementById('ctrl_alias');
+    // const result = document.querySelector(".alias-changed");
+    let stati = document.getElementsByClassName('url-rewrite-status');
+    let items = document.getElementsByClassName('alias-changed');
+    let li = document.getElementById('url_rewrite_list_add_new');
+    let rewrite_new = document.getElementById('rewrite_new');
+
+    aliasField.addEventListener('keyup', (e) => {
+      for (let i = 0; i < items.length; i++) {
+        items[i].textContent = `${urlRewriteProtocol}${urlRewriteDomain}/${e.target.value}${urlRewriteSuffix}`;
+
+        // hide unsaved rewrites
+        if (e.target.value === urlRewriteAlias) {
+          items[i].style.display = 'none';
+
+          // hide add new rewrite
+          li.style.display = 'none';
+
+          // hide update icon
+          stati[i].style.color = 'transparent';
+        }
+
+        // show unsaved rewrites
+        if (e.target.value !== urlRewriteAlias) {
+          items[i].style.display = 'inline-block';
+
+          // show add new rewrite
+          li.style.display = 'inline-block';
+          rewrite_new.textContent = items[i].textContent;
+
+          // show update icon
+          stati[i].style.color = '#fff';
+        }
+      }
+    });
+  });
+</script>
+<style>
+  .url-rewrite-list ul {
+    line-height: 1.7rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .url-rewrite-list ul li {
+    padding-left: 5px;
+  }
+
+  .url-rewrite-list ul li:nth-child(even) {
+    background-color: #f3f3f5;
+  }
+
+  .url-rewrite-list ul li span {
+    padding: 0px 3px;
+  }
+
+  .url-rewrite-list ul li.new {
+    display: none;
+  }
+
+  .url-rewrite-list ul li .path {
+    min-width: 15%;
+    display: inline-block;
+  }
+
+  .url-rewrite-list ul li .status {
+    padding: 0px 4px;
+    margin-right: 3px;
+    color: transparent;
+    user-select: none;
+  }
+
+  .url-rewrite-list ul li .status.plus {
+    color: #fff;
+    padding: 0px 3px;
+  }
+
+  .url-rewrite-list ul li .red {
+    background-color: rgba(234, 48, 48, 0.87);
+  }
+
+  .url-rewrite-list ul li .green {
+    background-color: rgb(95, 175, 73);
+  }
+
+  .url-rewrite-list ul li .grey {
+    background-color: rgb(119, 119, 119);
+    color: #fff;
+  }
+
+  .url-rewrite-list ul li .response-code {
+    background-color: rgb(206, 172, 18);
+    color: #fff;
+    border-radius: 3px;
+    padding: 0px 3px;
+  }
+
+  .url-rewrite-list ul li .alias-changed {
+    color: rgba(234, 48, 48, 0.87);
+  }
+
+</style>

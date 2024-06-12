@@ -21,14 +21,14 @@ use Contao\CoreBundle\DataContainer\PaletteManipulator;
 // Add to title legend
 PaletteManipulator::create()
     ->addField('urlRewriteList', 'author')
-    ->applyToPalette('default', 'tl_news')
+    ->applyToPalette('default', 'tl_calendar_events')
 ;
 
 // Add to meta legend
 PaletteManipulator::create()
     // ->addField('contaoSeoToolbar', 'type')
     ->addField(['contaoSeoMainKeyword', 'contaoSeoSecondaryKeywords'], 'robots')
-    ->applyToPalette('default', 'tl_news')
+    ->applyToPalette('default', 'tl_calendar_events')
 ;
 
 $GLOBALS['TL_DCA']['tl_news']['fields']['contaoSeoMainKeyword'] = [

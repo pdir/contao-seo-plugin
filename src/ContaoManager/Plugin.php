@@ -28,6 +28,7 @@ use Pdir\ContaoWebtoolsBundle\PdirContaoWebtoolsBundle;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\RouteCollection;
+use Terminal42\UrlRewriteBundle\Terminal42UrlRewriteBundle;
 
 class Plugin implements BundlePluginInterface, RoutingPluginInterface
 {
@@ -35,7 +36,11 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface
     {
         return [
             BundleConfig::create(PdirContaoSeoPluginBundle::class)
-                ->setLoadAfter([ContaoCoreBundle::class, PdirContaoWebtoolsBundle::class]),
+                ->setLoadAfter([
+                    ContaoCoreBundle::class,
+                    PdirContaoWebtoolsBundle::class,
+                    Terminal42UrlRewriteBundle::class
+                ]),
         ];
     }
 

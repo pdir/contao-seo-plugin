@@ -1,12 +1,25 @@
 services:
-    _defaults:
-        autoconfigure: true
+  _defaults:
+    autoconfigure: true
 
-    pdir.contao_seo_plugin.listener.data_container.backend_usability:
-        class: Pdir\ContaoSeoPlugin\EventListener\DataContainer\BackendUsabilityListener
+  pdir.contao_seo_plugin.listener.generate_page:
+    class: Pdir\ContaoSeoPlugin\EventListener\GeneratePageListener
 
-    pdir.contao_seo_plugin.listener.data_container.page_listener:
-        class: Pdir\ContaoSeoPlugin\EventListener\DataContainer\PageListener
+  pdir.contao_seo_plugin.listener.data_container.backend_usability:
+    class: Pdir\ContaoSeoPlugin\EventListener\DataContainer\BackendUsabilityListener
 
-    pdir.contao_seo_plugin.listener.output_frontend_template_listener:
-      class: Pdir\ContaoSeoPlugin\EventListener\OutputFrontendTemplateListener
+  pdir.contao_seo_plugin.listener.data_container.alias_save_listener:
+    class: Pdir\ContaoSeoPlugin\EventListener\DataContainer\AliasSaveListener
+    public: true
+    arguments:
+      - '@contao.framework'
+
+  pdir.contao_seo_plugin.listener.data_container.page_listener:
+    class: Pdir\ContaoSeoPlugin\EventListener\DataContainer\PageListener
+    public: true
+    arguments:
+      - '@contao.framework'
+      - '@twig'
+
+  pdir.contao_seo_plugin.listener.output_frontend_template_listener:
+    class: Pdir\ContaoSeoPlugin\EventListener\OutputFrontendTemplateListener

@@ -314,7 +314,7 @@ function init () {
   let internalLinks = getChildNodesOfElement('main', 'a', false);
 
   text = document.createElement('div');
-  text.className = 'csp-check csp-keyword-description csp-icon';
+  text.className = 'csp-check csp-internal-links csp-icon';
   if ('' !== cspMainKeyword && internalLinks.length > 3) {
     text.className += ' csp-success';
     text.textContent = cspMessages[cspLang]['internalLinkCheckSuccess'];

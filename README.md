@@ -8,6 +8,9 @@ plugin, you have the most important on-page factors directly in view.
 ### Current range of functions of version 1.0.0
 - SEO analysis of 8 typical on-page problems
 - IndexNow function for all known providers [indexnow.org](https://www.indexnow.org/faq)
+- Possibility to activate a 404 error log
+- Monitoring of alias changes
+- Display existing URL redirects in the alias view
 
 ### An outlook on further functions
 - At least 30 additional tests for on-page recommendations
@@ -22,16 +25,29 @@ plugin, you have the most important on-page factors directly in view.
 
 **Acknowledgments**
 The first version of this extension was created as part of a two-week student internship, thanks Markus.
+Thanks also to [terminal42](https://github.com/terminal42/) for the [URL Rewrite Bundle](https://github.com/terminal42/contao-url-rewrite).
+
+** Screenshots **
+
+![SEO toolbar](_docs/screenshots/seo-toolbar.png)
+![Keyword settings](_docs/screenshots/keyword-settings.png)
+![IndexNow settings](_docs/screenshots/indexnow-settings.png)
+![Monitoring of alias changes](_docs/screenshots/alias-rewrite-example.png)
+![Display existing URL redirects in the alias view](_docs/screenshots/url-rewrites-for-given-page.png)
+![404 error log](_docs/screenshots/404-error-log.png)
 
 ## German
 
-Wir helfen Website-Betreiber und Redaktionsteams, mehr Traffic von Suchmaschinen wie Google zu erhalten. Das Contao SEO
+Wir helfen Website-Betreibern und Redaktionsteams, mehr Traffic von Suchmaschinen wie Google zu erhalten. Das Contao SEO
 Plugin hilft Nutzern, ihre Inhalte gut zu optimieren und sowohl für Nutzer als auch für Suchmaschinen leicht zu finden.
 Mit dem Contao SEO Plugin hast du die wichtigsten OnPage Faktoren direkt im Blick.
 
 ### Aktueller Funktionsumfang der Version 1.0.0
-- SEO Analyse von 7 typischen Onpage Problemen
+- SEO Analyse von 8 typischen Onpage Problemen
 - IndexNow Funktion für alle bekannten Anbieter [indexnow.org](https://www.indexnow.org/de_de/faq)
+- Möglichkeit, ein 404-Fehlerprotokoll zu aktivieren
+- Überwachung von Alias-Änderungen
+- Anzeige bestehender URL-Weiterleitungen in der Alias-Ansicht
 
 ### Ein Ausblick auf weitere Funktionen
 - Mindestens 30 weitere Tests für Onpage Empfehlungen
@@ -46,3 +62,4 @@ Mit dem Contao SEO Plugin hast du die wichtigsten OnPage Faktoren direkt im Blic
 
 **Danksagung**
 Die erste Version dieser Erweiterung ist im Rahmen eines zweiwöchigen Schülerpraktikums entstanden, Danke Markus.
+Danke auch an [terminal42](https://github.com/terminal42/) für das [URL Rewrite Bundle](https://github.com/terminal42/contao-url-rewrite).

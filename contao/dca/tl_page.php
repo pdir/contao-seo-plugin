@@ -18,18 +18,28 @@ declare(strict_types=1);
 
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
 
+// Add new legend
 PaletteManipulator::create()
     ->addLegend('contao_seo_legend', 'meta_legend')
-    ->addField('contaoSeoActivateIndexNow', 'contao_seo_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField(['contaoSeoActivateErrorLog', 'contaoSeoActivateIndexNow'], 'contao_seo_legend', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('root', 'tl_page')
     ->applyToPalette('rootfallback', 'tl_page')
 ;
 
+
+// Add to routing legend
 PaletteManipulator::create()
-    // ->addField('contaoSeoToolbar', 'type')
-    ->addField(['contaoSeoMainKeyword', 'contaoSeoSecondaryKeywords'], 'robots', PaletteManipulator::POSITION_AFTER)
+    ->addField('urlRewriteList', 'routePriority')
     ->applyToPalette('regular', 'tl_page')
 ;
+
+// Add to meta legend
+PaletteManipulator::create()
+    // ->addField('contaoSeoToolbar', 'type')
+    ->addField(['contaoSeoMainKeyword', 'contaoSeoSecondaryKeywords'], 'robots')
+    ->applyToPalette('regular', 'tl_page')
+;
+
 
 $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'contaoSeoActivateIndexNow';
 $GLOBALS['TL_DCA']['tl_page']['subpalettes']['contaoSeoActivateIndexNow'] = 'contaoSeoIndexNowEngines,contaoSeoIndexNowKey';
@@ -37,6 +47,12 @@ $GLOBALS['TL_DCA']['tl_page']['subpalettes']['contaoSeoActivateIndexNow'] = 'con
 // add fields
 $GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoToolbar'] = [
     'exclude' => true,
+];
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoActivateErrorLog'] = [
+    'inputType' => 'checkbox',
+    'eval' => ['doNotCopy'=>true, 'submitOnChange'=>true, 'tl_class' => 'w50 clr'],
+    'sql' => ['type' => 'boolean', 'default' => false]
 ];
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoActivateIndexNow'] = [
@@ -73,3 +89,5 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoSecondaryKeywords'] = [
     'eval' => ['mandatory'=>false, 'basicEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
     'sql' => "varchar(255) NOT NULL default ''"
 ];
+
+# $GLOBALS['TL_DCA']['tl_page']['fields']['urlRewriteList']['eval'] = ['tl_class'=>''];

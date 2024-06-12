@@ -1,0 +1,14 @@
+- Add toolbar status to session (closed,open)
+- Setting for toolbar not overlapping content
+- Insert links to explanations for each test
+- Check length of title
+- Check length of description
+- Check if keyword is used on another page
+- Add more on-page tests
+- Show canonical status
+- Show index and follow status
+- Set schema of site or content
+- Keyword rank tracker overview table/list from seowatchdoc or google search console?
+- show test result in contao page structure (e.g. 15/30)
+- show backlinks of a page from seowatchdoc
+- show page position from seowatchdoc
