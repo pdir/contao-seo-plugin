@@ -297,15 +297,12 @@ function init () {
 
   // image alt check
   let images = getChildNodesOfElement('main', 'img', false);
-  console.log(images);
-  // @todo add mainKeywordInImageAlt check!!!
   let mainKeywordInImageAlt = false;
 
-  // main keyword found in images
+  // Check for main keyword in image alt attribute
   if (images.length > 0) {
     mainKeywordInImageAlt = findStringInImageAlt(cspMainKeyword, images);
   }
-
 
   text = document.createElement('div');
   text.className = 'csp-check csp-content-length csp-icon';
@@ -447,8 +444,9 @@ function contains(str, searchStr) {
 function aliasContains(str, searchStr) {
   if(str.includes(searchStr) ||
     str.includes(searchStr.toLowerCase()) ||
-    str.includes(searchStr.replaceAll(' ', '-').toLowerCase())  ||
-    str.includes(searchStr.replaceAll(' ', '_').toLowerCase())
+    str.includes(searchStr.replaceAll(' ', '-').toLowerCase()) ||
+    str.includes(searchStr.replaceAll(' ', '_').toLowerCase()) ||
+    str.includes(searchStr.replaceAll('.', '-').replaceAll(' ', '-').toLowerCase())
   )
     return true;
 
