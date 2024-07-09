@@ -1,4 +1,5 @@
 .csp-toolbar {
+  color: #222;
   position: fixed;
   z-index: 9998;
   top: 0;
@@ -223,6 +224,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
   .csp-toolbar {
+    color: #fff;
     background-color: #000;
 
     #cspTotal {
