@@ -220,3 +220,30 @@ body {
     margin-right: 300px;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .csp-toolbar {
+    background-color: #000;
+
+    #cspTotal {
+      color: #000;
+      border: 1px solid #000;
+    }
+
+    .csp-main-keyword {
+      color: #fff;
+    }
+
+    .csp-secondary-keywords {
+      color: #bfbfbf;
+    }
+
+    .csp-icon::before {
+      color: #000;
+    }
+
+    .csp-toolbar-footer .csp-button {
+      color: #fff;
+    }
+  }
+}

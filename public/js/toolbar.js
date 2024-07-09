@@ -32,7 +32,9 @@ const
       'internalLinkCheckSuccess': 'Super, es wurden ausreichend interne Links gefunden.',
       'internalLinkCheckFail': 'Auf dieser Seite gibt es keine internen Links. Füge welche hinzu!',
     }
-  }
+  },
+  showToolbarSign = '＋',
+  hideToolbarSign = '✕'
   ;
 
   var
@@ -131,7 +133,11 @@ function init () {
 
   // add close button
   button = document.createElement('div');
-  button.textContent = '✕';
+  if (body.classList.contains('pdir-seoToolbar--hidden')) {
+    button.textContent = showToolbarSign;
+  } else {
+    button.textContent = hideToolbarSign;
+  }
   button.setAttribute('title', cspMessages[cspLang]['buttonHide']);
   button.className = 'csp-button csp-hide-toolbar';
 
@@ -143,12 +149,12 @@ function init () {
       localStorage.setItem('pdir/seoToolbar/displayState', 'visible');
       body.classList.add('pdir-seoToolbar--visible');
       body.classList.remove('pdir-seoToolbar--hidden');
-      document.getElementsByClassName('csp-hide-toolbar')[0].innerHTML = '✕';
+      document.getElementsByClassName('csp-hide-toolbar')[0].innerHTML = hideToolbarSign;
     } else {
       localStorage.setItem('pdir/seoToolbar/displayState', 'hidden');
       body.classList.add('pdir-seoToolbar--hidden');
       body.classList.remove('pdir-seoToolbar--visible');
-      document.getElementsByClassName('csp-hide-toolbar')[0].innerHTML = '＋';
+      document.getElementsByClassName('csp-hide-toolbar')[0].innerHTML = showToolbarSign;
     }
 
     toggleElement('cspToolbarBody');
@@ -291,8 +297,14 @@ function init () {
 
   // image alt check
   let images = getChildNodesOfElement('main', 'img', false);
+  console.log(images);
   // @todo add mainKeywordInImageAlt check!!!
   let mainKeywordInImageAlt = false;
+
+  // main keyword found in images
+  if (images.length > 0) {
+    mainKeywordInImageAlt = findStringInImageAlt(cspMainKeyword, images);
+  }
 
 
   text = document.createElement('div');
@@ -461,6 +473,14 @@ function findStringInBeginningOfText(str, text) {
     return true;
 
   return false;
+}
+
+function findStringInImageAlt(str, images) {
+  for(let i=0; i<images.length; i++) {
+    if(images[i].alt.toLowerCase().includes(str.toLowerCase())) {
+      return true;
+    }
+  }
 }
 
 function toggleElement(id) {
