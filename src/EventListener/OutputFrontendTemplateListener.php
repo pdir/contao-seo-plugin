@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 namespace Pdir\ContaoSeoPlugin\EventListener;
 
+use Contao\BackendUser;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Contao\Input;
 use Contao\NewsModel;
@@ -25,10 +26,17 @@ use Contao\PageModel;
 use Contao\StringUtil;
 use Contao\System;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 
 #[AsHook('outputFrontendTemplate')]
 class OutputFrontendTemplateListener
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
     private string $assetsDir = 'bundles/pdircontaoseoplugin';
 
     public function __invoke(string $buffer, string $template): string
@@ -41,6 +49,13 @@ class OutputFrontendTemplateListener
             return $buffer;
         }
 
+        $user = BackendUser::getInstance();
+
+        // is not admin or no access is granted
+        if (!$user->isAdmin && !$this->security->isGranted('contao_user.pdirSeoPlugin', 'canUseToolbar')) {
+            return $buffer;
+        }
+
         global $objPage;
         $rootPage = PageModel::findOneById($objPage->rootId);
 
@@ -49,7 +64,7 @@ class OutputFrontendTemplateListener
             $mainKeyword = $objPage->contaoSeoMainKeyword;
             $secondaryKeywords = $objPage->contaoSeoSecondaryKeywords;
 
-            // check if current page is a news reader
+            // check if current page is a newsreader
             $alias = Input::get('auto_item');
 
             if (isset($alias)) {
@@ -60,7 +75,6 @@ class OutputFrontendTemplateListener
                     $secondaryKeywords = $newsModel->contaoSeoSecondaryKeywords;
                 }
             }
-
 
             $engines = json_encode(StringUtil::deserialize($rootPage->contaoSeoIndexNowEngines));
 

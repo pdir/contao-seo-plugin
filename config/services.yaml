@@ -23,3 +23,6 @@ services:
 
   pdir.contao_seo_plugin.listener.output_frontend_template_listener:
     class: Pdir\ContaoSeoPlugin\EventListener\OutputFrontendTemplateListener
+    public: true
+    arguments:
+      - '@security.helper'

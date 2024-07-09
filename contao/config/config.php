@@ -28,3 +28,8 @@ $GLOBALS['TL_PURGE']['tables']['error_log'] = [
     'callback' => [ErrorLogAutomator::class, 'purgeErrorLog'],
     'affected' => ['tl_error_log']
 ];
+
+/*
+ * Permissions
+ */
+$GLOBALS['TL_PERMISSIONS'][] = 'pdirSeoPlugin';
