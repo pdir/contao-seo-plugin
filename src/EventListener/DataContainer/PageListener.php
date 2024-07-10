@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 namespace Pdir\ContaoSeoPlugin\EventListener\DataContainer;
 
+use Contao\BackendUser;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\DataContainer;
@@ -49,15 +50,21 @@ class PageListener
     } */
 
     #[AsCallback(table: 'tl_page', target: 'fields.urlRewriteList.input_field')]
+    #[AsCallback(table: 'tl_news', target: 'fields.urlRewriteList.input_field')]
+    #[AsCallback(table: 'tl_calendar_events', target: 'fields.urlRewriteList.input_field')]
     public function generateUrlRewriteList(DataContainer $dc): string
     {
-        $pageModel = $this->framework->getAdapter(PageModel::class)->findById($dc->id);
-
-        if (!$pageModel) {
+        if (!BackendUser::getInstance()->pdirSeoPluginRewriteWidget) {
             return '';
         }
 
-        $currentUrl = $this->generateRedirectUrl($dc, $pageModel->alias);
+        [$pageModel, $currentAlias, $currentAliasPrefix] = $this->getPageModelAndAliases($dc);
+
+        if (!$currentAlias || null === $pageModel) {
+            return '';
+        }
+
+        $currentUrl = $this->generateRedirectUrl($pageModel, $currentAlias);
 
         $rewriteModel = UrlRewriteModel::findBy(['responseUri=?'], [$currentUrl]);
         $rewrites = [];
@@ -78,12 +85,14 @@ class PageListener
             }
         }
 
+        $rootPage = PageModel::findById($pageModel->rootId);
+
         return $this->twig->render('@Contao_PdirContaoSeoPluginBundle/be_url_rewrite_list.html.twig', [
             'id' => $pageModel->id,
-            'alias' => $pageModel->alias,
-            'url' => $currentUrl,
+            'currentAlias' => $currentAlias,
+            'currentAliasPrefix' => $currentAliasPrefix, // used for news and events
             'domain' => $pageModel->domain,
-            'suffix' => $pageModel->urlSuffix,
+            'suffix' => $rootPage->urlSuffix,
             'protocol' => $pageModel->rootUseSSL? 'https://' : 'http://',
             'rewrites' => !empty($rewrites)? $rewrites : null
         ]);

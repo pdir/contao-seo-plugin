@@ -9,10 +9,10 @@
       <span class="status green plus">＋</span>
       <span class="response-code" title="{{ 'tl_page.responseCode'|trans }}">301</span>
       <span class="grey" title="{{ 'tl_page.routePriority.0'|trans }}">0</span>
-      <span id="rewrite_new_path" class="path">/{{ alias }}{{ suffix }}</span>
+      <span id="rewrite_new_path" class="path">/{{ currentAlias }}{{ suffix }}</span>
       &nbsp; →
       <span id="rewrite_new"
-            class="path rewrite-preview-url alias-changed">{{ protocol }}{{ domain }}/{{ alias }}{{ suffix }}</span>
+            class="path rewrite-preview-url alias-changed">{{ protocol }}{{ domain }}/{{ currentAlias }}{{ suffix }}</span>
     </li>
     {% for rewrite in rewrites %}
       <li>
@@ -31,7 +31,8 @@
 </div>
 <script>
   window.addEvent('domready', function () {
-    let urlRewriteAlias = '{{ alias }}';
+    let urlRewriteAlias = '{{ currentAlias }}';
+    let urlRewriteAliasPrefix = '{{ currentAliasPrefix }}';
     let urlRewriteSuffix = '{{ suffix }}';
     let urlRewriteDomain = '{{ domain }}';
     let urlRewriteProtocol = '{{ protocol }}';
@@ -45,7 +46,11 @@
 
     aliasField.addEventListener('keyup', (e) => {
       for (let i = 0; i < items.length; i++) {
-        items[i].textContent = `${urlRewriteProtocol}${urlRewriteDomain}/${e.target.value}${urlRewriteSuffix}`;
+        if ('' !== urlRewriteAliasPrefix) {
+          items[i].textContent = `${urlRewriteProtocol}${urlRewriteDomain}/${urlRewriteAliasPrefix}/${e.target.value}${urlRewriteSuffix}`;
+        } else {
+          items[i].textContent = `${urlRewriteProtocol}${urlRewriteDomain}/${e.target.value}${urlRewriteSuffix}`;
+        }
 
         // hide unsaved rewrites
         if (e.target.value === urlRewriteAlias) {
@@ -82,6 +87,7 @@
 
   .url-rewrite-list ul li {
     padding-left: 5px;
+    width: 100%;
   }
 
   .url-rewrite-list ul li:nth-child(even) {

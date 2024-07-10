@@ -18,6 +18,15 @@ declare(strict_types=1);
 
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
 
+PaletteManipulator::create()
+    ->addLegend('pdirSeoPlugin_legend', null)
+    ->addField('pdirSeoPlugin', 'pdirSeoPlugin_legend', PaletteManipulator::POSITION_APPEND)
+    ->applyToPalette('extend', 'tl_user')
+    ->applyToPalette('custom', 'tl_user')
+;
+
+#$GLOBALS['TL_DCA']['tl_user']['palettes']['default'] = preg_replace('(([,;}]useCE)([,;{]))i', '$1,rocksolidFrontendHelper,rocksolidFrontendHelperLightbox$2', $GLOBALS['TL_DCA']['tl_user']['palettes']['default']);
+
 $GLOBALS['TL_DCA']['tl_user']['fields']['pdirSeoPlugin'] = [
     'exclude' => true,
     'inputType' => 'checkbox',
@@ -26,9 +35,17 @@ $GLOBALS['TL_DCA']['tl_user']['fields']['pdirSeoPlugin'] = [
     'sql' => ['type' => 'blob', 'notnull' => false],
 ];
 
-PaletteManipulator::create()
-    ->addLegend('pdirSeoPlugin_legend', null)
-    ->addField('pdirSeoPlugin', 'pdirSeoPlugin_legend', PaletteManipulator::POSITION_APPEND)
-    ->applyToPalette('extend', 'tl_user')
-    ->applyToPalette('custom', 'tl_user')
-;
+$GLOBALS['TL_DCA']['tl_user']['fields']['pdirSeoPluginRewriteWidget'] = [
+    'exclude' => true,
+    'inputType' => 'checkbox',
+    'eval' => ['tl_class' => 'clr w50'],
+    'sql' => "char(1) NOT NULL default '0'",
+];
+
+foreach ($GLOBALS['TL_DCA']['tl_user']['palettes'] as $key => $value) {
+    $GLOBALS['TL_DCA']['tl_user']['palettes'][$key] = preg_replace('(([,;}]useCE)([,;{]))i', '$1,pdirSeoPluginRewriteWidget$2', $GLOBALS['TL_DCA']['tl_user']['palettes'][$key]);
+}
+
+
+
+

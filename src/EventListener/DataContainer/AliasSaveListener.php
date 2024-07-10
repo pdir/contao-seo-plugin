@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 namespace Pdir\ContaoSeoPlugin\EventListener\DataContainer;
 
+use Contao\BackendUser;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
 use Contao\PageModel;
@@ -31,15 +32,21 @@ class AliasSaveListener
     use BackendListenerTrait;
     public function __invoke($value, DataContainer $dc)
     {
+        if (!BackendUser::getInstance()->pdirSeoPluginRewriteWidget) {
+            return '';
+        }
+
         if ($value === ($dc->activeRecord->alias ?? null)) {
             return $value;
         }
 
+        [$pageModel, $currentAlias, $currentAliasPrefix] = $this->getPageModelAndAliases($dc);
+
         // Get old alias
-        $oldAlias = $this->generateRedirectUrl($dc, $dc->activeRecord->alias);
+        $oldAlias = $this->generateRedirectUrl($pageModel, $currentAlias);
 
         // Get new alias
-        $newAlias = $this->generateRedirectUrl($dc, $value);
+        $newAlias = $this->generateRedirectUrl($pageModel, $currentAliasPrefix? $currentAliasPrefix.'/'.$value : $value);
 
         // Check if the old url has already been rewritten, we want to update it
         $oldRewrites = UrlRewriteModel::findBy(['responseUri=?'], [$oldAlias]);
@@ -61,13 +68,13 @@ class AliasSaveListener
 
         // Add new rewrite to url rewrite table
         $rewrite = new UrlRewriteModel();
-        $rewrite->name = $dc->activeRecord->title;
+        $rewrite->name = $dc->activeRecord->title?? $dc->activeRecord->headline;
         $rewrite->type = 'basic';
         $rewrite->priority = 0;
         $rewrite->inactice = 0;
-        $rewrite->requestPath = $oldAlias;
+        $rewrite->requestPath = '/'.$currentAlias;
         $rewrite->responseCode = 301;
-        $rewrite->responseUri = $this->generateRedirectUrl($dc, $value);
+        $rewrite->responseUri = $newAlias;
         $rewrite->tstamp = time();
         $rewrite->comment = 'contao-seo-plugin';
         $rewrite->save();

@@ -18,3 +18,5 @@ declare(strict_types=1);
 
 $GLOBALS['TL_LANG']['tl_user']['pdirSeoPlugin'] = ['Contao SEO Plugin Berechtigungen', 'Hier können Sie die Berechtigungen für das Contao SEO Plugin festlegen.'];
 $GLOBALS['TL_LANG']['tl_user']['pdirSeoPluginOptions']['canUseToolbar'] = 'Der Benutzer kann die SEO Toolbar im Frontend verwenden.';
+$GLOBALS['TL_LANG']['tl_user']['pdirSeoPluginRewriteWidget'] = ['Aktiviere automatische URL Umschreiberegeln', '<span style="color:red;">(Experimentell)</span> Aktiviert das Widget URL Umschreiberegeln in der Seitenstruktur, den Nachrichten und in den Events.'];
+
