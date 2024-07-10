@@ -18,7 +18,9 @@ declare(strict_types=1);
 
 namespace Pdir\ContaoSeoPlugin\EventListener\DataContainer;
 
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
+use Contao\DataContainer;
 
 #[AsHook('loadDataContainer')]
 class BackendUsabilityListener
@@ -29,7 +31,9 @@ class BackendUsabilityListener
             // Show keywords
             $GLOBALS['TL_DCA']['tl_page']['list']['label']['fields'][] = 'contaoSeoMainKeyword';
             $GLOBALS['TL_DCA']['tl_page']['list']['label']['fields'][] = 'contaoSeoSecondaryKeywords';
-            $GLOBALS['TL_DCA']['tl_page']['list']['label']['format'] = $GLOBALS['TL_DCA']['tl_page']['list']['label']['format'].' [<span style="color:cornflowerblue;padding-left:3px;font-weight:normal;">%s</span>; <span style="color:darkgray;padding-right:3px;">%s</span>]';
+            $GLOBALS['TL_DCA']['tl_page']['list']['label']['format'] = $GLOBALS['TL_DCA']['tl_page']['list']['label']['format'].' [<span style="color:cornflowerblue;padding-left:3px;font-weight:normal;">%s</span><span class="pdir-page-tree-label" style="color:darkgray;padding-left:3px;padding-right:3px;">%s</span>]';
+
+            $GLOBALS['TL_MOOTOOLS'][] = '<style>.pdir-page-tree-label:not(:empty):before {content: "; ";}</style>';
         }
     }
 }

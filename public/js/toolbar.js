@@ -1,12 +1,6 @@
 const
   cspCurrentUrl = window.location.href,
   cspIsRoot = location.pathname === '/' || location.pathname === '/preview.php/',
-  cspSearchEngines = {
-    'microsoftBing': 'www.bing.com',
-    'naver': 'searchadvisor.naver.com',
-    'seznam.cz': 'search.seznam.cz',
-    'yandex': 'yandex.com',
-  },
   totalNeutralPercent = 70,
   totalFailPercent = 50,
   cspLang = document.documentElement.lang,
@@ -415,7 +409,7 @@ function indexNow () {
 }
 
 async function sendUrlToSearchEngine (engine) {
-  let url = 'https://'+cspSearchEngines[engine]+'/indexnow?url='+cspCurrentUrl+'&key=indexNow'+cspIndexNowKey;
+  let url = window.location.protocol + "//" + window.location.host+'/_indexNow/send?engine='+engine+'&url='+cspCurrentUrl+'&key=indexNow'+cspIndexNowKey;
   const response = await fetch(url);
   const res = await response;
   // @todo implement error handling

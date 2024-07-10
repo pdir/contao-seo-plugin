@@ -5,3 +5,6 @@ services:
       arguments:
 #        - '@contao.routing.page_finder'
         - '@contao.framework'
+
+    Pdir\ContaoSeoPlugin\Controller\IndexNowController:
+      public: true
