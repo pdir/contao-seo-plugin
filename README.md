@@ -9,7 +9,7 @@ plugin, you have the most important on-page factors directly in view.
 - SEO analysis of 8 typical on-page problems
 - IndexNow function for all known providers [indexnow.org](https://www.indexnow.org/faq)
 - Possibility to activate a 404 error log
-- Monitoring of alias changes
+- Monitoring of alias changes (experimental, must be activated in user profile)
 - Display existing URL redirects in the alias view
 
 ### An outlook on further functions
@@ -57,7 +57,7 @@ Mit dem Contao SEO Plugin hast du die wichtigsten OnPage Faktoren direkt im Blic
 - SEO Analyse von 8 typischen Onpage Problemen
 - IndexNow Funktion für alle bekannten Anbieter [indexnow.org](https://www.indexnow.org/de_de/faq)
 - Möglichkeit, ein 404-Fehlerprotokoll zu aktivieren
-- Überwachung von Alias-Änderungen
+- Überwachung von Alias-Änderungen (experimentell, muss im Benutzerprofil aktiviert werden)
 - Anzeige bestehender URL-Weiterleitungen in der Alias-Ansicht
 
 ### Ein Ausblick auf weitere Funktionen

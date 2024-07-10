@@ -17,5 +17,5 @@ first release
 - [Added] SEO analysis of 8 typical on-page problems
 - [Added] IndexNow function for all known providers [indexnow.org](https://www.indexnow.org/faq)]
 - [Added] 404 error log feature
-- [Added] Monitoring of alias changes
+- [Added] Monitoring of alias changes (experimental, must be activated in user profile)
 - [Added] Display existing URL redirects in the alias view
