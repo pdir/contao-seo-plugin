@@ -18,9 +18,7 @@ declare(strict_types=1);
 
 namespace Pdir\ContaoSeoPlugin\EventListener\DataContainer;
 
-use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
-use Contao\DataContainer;
 
 #[AsHook('loadDataContainer')]
 class BackendUsabilityListener
