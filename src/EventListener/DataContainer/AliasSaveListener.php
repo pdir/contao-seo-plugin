@@ -33,7 +33,7 @@ class AliasSaveListener
     public function __invoke($value, DataContainer $dc)
     {
         if (!BackendUser::getInstance()->pdirSeoPluginRewriteWidget) {
-            return '';
+            return $value;
         }
 
         if ($value === ($dc->activeRecord->alias ?? null)) {
@@ -42,11 +42,21 @@ class AliasSaveListener
 
         [$pageModel, $currentAlias, $currentAliasPrefix] = $this->getPageModelAndAliases($dc);
 
+        // Do nothing if current alias is empty
+        if (empty($currentAlias)) {
+            return $value;
+        }
+
         // Get old alias
         $oldAlias = $this->generateRedirectUrl($pageModel, $currentAlias);
 
         // Get new alias
         $newAlias = $this->generateRedirectUrl($pageModel, $currentAliasPrefix? $currentAliasPrefix.'/'.$value : $value);
+
+        // Do nothing if new alias is empty
+        if (empty($newAlias)) {
+            return $value;
+        }
 
         // Check if the old url has already been rewritten, we want to update it
         $oldRewrites = UrlRewriteModel::findBy(['responseUri=?'], [$oldAlias]);

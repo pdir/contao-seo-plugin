@@ -34,7 +34,7 @@ class GeneratePageListener
         if('error_404' === $pageModel->type) {
             if ($rootPage = PageModel::findById($pageModel->rootId)) {
                 // Check if error log is active
-                if ($rootPage->contaoSeoActivateErrorLog && 1 === $rootPage->contaoSeoActivateErrorLog) {
+                if (isset($rootPage->contaoSeoActivateErrorLog) && true === boolval($rootPage->contaoSeoActivateErrorLog)) {
                     // Write error to database
                     $error = new ErrorLogModel();
                     $error->tstamp = time();

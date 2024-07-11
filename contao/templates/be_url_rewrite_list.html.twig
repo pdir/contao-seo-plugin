@@ -83,6 +83,7 @@
     line-height: 1.7rem;
     padding: 0;
     margin: 0;
+    list-style: none;
   }
 
   .url-rewrite-list ul li {
@@ -141,6 +142,12 @@
 
   .url-rewrite-list ul li .alias-changed {
     color: rgba(234, 48, 48, 0.87);
+  }
+
+  html[data-color-scheme="dark"] {
+    .url-rewrite-list ul li:nth-child(2n) {
+      background-color: #272a30;
+    }
   }
 
 </style>
