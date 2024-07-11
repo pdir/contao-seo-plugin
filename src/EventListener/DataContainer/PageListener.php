@@ -72,14 +72,14 @@ class PageListener
         if (null !== $rewriteModel) {
 
             foreach ($rewriteModel as $item) {
-                $rewrites[] = $item;
+                $rewrites[$item->id] = $item;
 
-                // try to get redirects for current urls
+                // Try to get redirects for current urls
                 $children = UrlRewriteModel::findBy(['responseUri=?'], ['https://'.$pageModel->domain.$item->requestPath]);
 
                 if (null !== $children) {
                     foreach ($children as $child) {
-                        $rewrites[] = $child;
+                        $rewrites[$child->id] = $child;
                     }
                 }
             }
