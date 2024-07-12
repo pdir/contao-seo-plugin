@@ -86,14 +86,20 @@ class PageListener
         }
 
         $rootPage = PageModel::findById($pageModel->rootId);
+        $protocol = $pageModel->rootUseSSL? 'https://' : 'http://';
+
+        // Fix for empty domain
+        if ('' === $rootPage->dns) {
+            $protocol = '';
+        }
 
         return $this->twig->render('@Contao_PdirContaoSeoPluginBundle/be_url_rewrite_list.html.twig', [
             'id' => $pageModel->id,
             'currentAlias' => $currentAlias,
             'currentAliasPrefix' => $currentAliasPrefix, // used for news and events
-            'domain' => $pageModel->domain,
+            'domain' => $rootPage->dns,
             'suffix' => $rootPage->urlSuffix,
-            'protocol' => $pageModel->rootUseSSL? 'https://' : 'http://',
+            'protocol' => $protocol,
             'rewrites' => !empty($rewrites)? $rewrites : null
         ]);
     }

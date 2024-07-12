@@ -37,19 +37,20 @@ trait BackendListenerTrait
         $rootPage = PageModel::findById($pageModel->rootId);
         $currentUrl = '';
 
-        if ($pageModel->rootUseSSL) {
-            $currentUrl .= 'https://';
+        if (isset($rootPage->dns) && '' !== $rootPage->dns) {
+
+            if ($pageModel->rootUseSSL) {
+                $currentUrl .= 'https://';
+            }
+
+            if (!$pageModel->rootUseSSL) {
+                $currentUrl .= 'http://';
+            }
+
+            $currentUrl .= $rootPage->dns;
         }
 
-        if (!$pageModel->rootUseSSL) {
-            $currentUrl .= 'http://';
-        }
-
-        if ($pageModel->domain) {
-            $currentUrl .= $pageModel->domain;
-        }
-
-        $currentUrl .= '/' . $alias . $rootPage->urlSuffix?? '';
+        $currentUrl .= '/'.$alias.$rootPage->urlSuffix?? '';
 
         return $currentUrl;
     }
