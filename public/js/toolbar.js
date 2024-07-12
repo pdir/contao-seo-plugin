@@ -215,7 +215,6 @@ function init () {
 
   tBody.append(text); totalTests++;
 
-
   // main keyword description check
   text = document.createElement('div');
   text.className = 'csp-check csp-keyword-description csp-icon';
