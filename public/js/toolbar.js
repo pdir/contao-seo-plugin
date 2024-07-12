@@ -70,7 +70,7 @@ function init () {
     panel,
     body = document.querySelector('body')
   ;
-console.log(cspLang);
+
   // Language fallback to en
   if (typeof cspMessages[cspLang] === 'undefined') {
     cspLang = 'en';
