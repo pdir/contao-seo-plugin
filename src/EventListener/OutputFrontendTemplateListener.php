@@ -61,7 +61,7 @@ class OutputFrontendTemplateListener
         global $objPage;
         $rootPage = PageModel::findOneById($objPage->rootId);
 
-        if (str_contains($template, 'fe_page') && true === boolval($rootPage->contaoSeoActivateIndexNow)) {
+        if (str_contains($template, 'fe_page')) {
 
             $mainKeyword = $objPage->contaoSeoMainKeyword;
             $secondaryKeywords = $objPage->contaoSeoSecondaryKeywords;
@@ -84,6 +84,7 @@ class OutputFrontendTemplateListener
             $GLOBALS['TL_CSS'][] = $this->assetsDir . '/scss/toolbar.scss|static';
             $GLOBALS['TL_BODY'][] = <<<JS
 <script>
+  var cspIndexNowActive =  '$rootPage->contaoSeoActivateIndexNow';
   var cspIndexNowEngines = $engines;
   var cspIndexNowKey = '$rootPage->contaoSeoIndexNowKey';
   var cspMainKeyword = '$mainKeyword';

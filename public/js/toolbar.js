@@ -111,7 +111,7 @@ function init () {
   }
 
   // add index now button if cspIndexNowEngines exists
-  if (typeof cspIndexNowEngines !== 'undefined') {
+  if (typeof cspIndexNowEngines !== 'undefined' && cspIndexNowActive) {
     button = document.createElement('div');
     button.textContent = '[IN]';
     button.setAttribute('title', cspMessages[cspLang]['buttonIndexNow']);
