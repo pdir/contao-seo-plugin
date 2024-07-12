@@ -3,7 +3,6 @@ const
   cspIsRoot = location.pathname === '/' || location.pathname === '/preview.php/',
   totalNeutralPercent = 70,
   totalFailPercent = 50,
-  cspLang = document.documentElement.lang,
   cspMessages = {
     de: {
       'toolbarHeadline': 'SEO Toolbar',
@@ -25,6 +24,27 @@ const
       'imageAltCheckFail': 'Auf dieser Seite erscheinen keine Bilder. Füge welche hinzu!',
       'internalLinkCheckSuccess': 'Super, es wurden ausreichend interne Links gefunden.',
       'internalLinkCheckFail': 'Auf dieser Seite gibt es keine internen Links. Füge welche hinzu!',
+    },
+    en: {
+      'toolbarHeadline': 'SEO Toolbar',
+      'buttonHide': 'Hide toolbar',
+      'buttonIndexNow': 'IndexNow',
+      'buttonOverlap': 'Change layout',
+      'seoAuditHeadline': 'SEO audit',
+      'mainKeywordNotExistsCheck': 'Enter the main keyword for this page',
+      'mainKeywordTitleCheckSuccess': 'Perfect, the main keyword is included in the title',
+      'mainKeywordTitleCheckFail' : 'Add the main keyword to the meta title',
+      'mainKeywordMetaDescriptionCheckSuccess': 'Perfect, the main keyword is included in the meta description',
+      'mainKeywordMetaDescriptionCheckFail': 'Add the main keyword to the meta description',
+      'mainKeywordAliasCheckSuccess': 'Very good, the main keyword is included in the alias of the page',
+      'mainKeywordAliasCheckNeutral': 'No alias is necessary for the start page',
+      'mainKeywordAliasCheckFail': 'Use the main keyword in the alias of the page',
+      'seoAuditReadabilityHeadline': 'Readability of the content',
+      'imageAltCheckSuccess': 'Great, images are present and contain the main keyword in the alt attribute',
+      'imageAltCheckNeutral': 'Images are present, but the main keyword is not used as alt attribute',
+      'imageAltCheckFail': 'No images appear on this page. Add some!',
+      'internalLinkCheckSuccess': 'Great, enough internal links were found',
+      'internalLinkCheckFail': 'There are no internal links on this page. Add some!',
     }
   },
   showToolbarSign = '＋',
@@ -33,7 +53,8 @@ const
 
   var
     totalTests = 0,
-    totalFails = 0
+    totalFails = 0,
+    cspLang = document.documentElement.lang.substring(0, 2)
   ;
 document.addEventListener('DOMContentLoaded', () => {
   init();
@@ -49,6 +70,11 @@ function init () {
     panel,
     body = document.querySelector('body')
   ;
+console.log(cspLang);
+  // Language fallback to en
+  if (typeof cspMessages[cspLang] === 'undefined') {
+    cspLang = 'en';
+  }
 
   // Initialize toolbar
   if ('hidden' === localStorage.getItem('pdir/seoToolbar/displayState')) {
