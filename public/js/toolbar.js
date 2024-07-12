@@ -21,7 +21,7 @@ const
       'seoAuditReadabilityHeadline': 'Lesbarkeit des Inhalts',
       'imageAltCheckSuccess': 'Super, Bilder sind vorhanden und enthalten das Hauptkeyword im alt-Attribut.',
       'imageAltCheckNeutral': 'Es sind Bilder vorhanden, aber das Hauptkeyword wird nicht als alt-Attribut verwendet.',
-      'imageAltCheckFail': 'Auf dieser Seite erscheinen keine Bilder. Füge welche hinzu!',
+      'imageAltCheckFail': 'Auf dieser Seite erscheinen keine oder weniger als 3 Bilder. Füge welche hinzu!',
       'internalLinkCheckSuccess': 'Super, es wurden ausreichend interne Links gefunden.',
       'internalLinkCheckFail': 'Auf dieser Seite gibt es keine internen Links. Füge welche hinzu!',
     },
@@ -42,7 +42,7 @@ const
       'seoAuditReadabilityHeadline': 'Readability of the content',
       'imageAltCheckSuccess': 'Great, images are present and contain the main keyword in the alt attribute',
       'imageAltCheckNeutral': 'Images are present, but the main keyword is not used as alt attribute',
-      'imageAltCheckFail': 'No images appear on this page. Add some!',
+      'imageAltCheckFail': 'No or less than 3 images appear on this page. Add some!',
       'internalLinkCheckSuccess': 'Great, enough internal links were found',
       'internalLinkCheckFail': 'There are no internal links on this page. Add some!',
     }
@@ -302,7 +302,7 @@ function init () {
   panel.className = 'csp-panel csp-text csp-headline';
   panel.textContent = cspMessages[cspLang]['seoAuditReadabilityHeadline'];
 
-  // event
+  // Event
   panel.addEventListener( 'click', function (event) {
     toggleElement('cspSection1');
     toggleClass('cspPanel1', 'open');
@@ -315,7 +315,7 @@ function init () {
   container.className = 'csp-container csp-hide';
   container.style.display = 'none';
 
-  // image alt check
+  // Image alt check
   let images = getChildNodesOfElement('main', 'img', false);
   let mainKeywordInImageAlt = false;
 
@@ -326,10 +326,10 @@ function init () {
 
   text = document.createElement('div');
   text.className = 'csp-check csp-content-length csp-icon';
-  if ('' !== cspMainKeyword && images.length > 3 && mainKeywordInImageAlt) {
+  if ('' !== cspMainKeyword && images.length >= 3 && mainKeywordInImageAlt) {
     text.className += ' csp-success';
     text.textContent = cspMessages[cspLang]['imageAltCheckSuccess'];
-  } else if ('' !== cspMainKeyword && images.length > 3) {
+  } else if ('' !== cspMainKeyword && images.length >= 3) {
     text.className += ' csp-neutral';
     text.textContent = cspMessages[cspLang]['imageAltCheckNeutral'];
   } else {
@@ -339,7 +339,7 @@ function init () {
   }
   container.append(text); totalTests++;
 
-  // internal link check
+  // Internal link check
   let internalLinks = getChildNodesOfElement('main', 'a', false);
 
   text = document.createElement('div');
