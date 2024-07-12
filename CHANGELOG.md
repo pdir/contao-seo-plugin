@@ -19,3 +19,4 @@ first release
 - [Added] 404 error log feature
 - [Added] Monitoring of alias changes (experimental, must be activated in user profile)
 - [Added] Display existing URL redirects in the alias view
+- [Added] Add compatibility for Contao 5.4+

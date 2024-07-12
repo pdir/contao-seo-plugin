@@ -47,6 +47,11 @@ class AliasSaveListener
             return $value;
         }
 
+        // Do nothing if page is root
+        if ('root' === $pageModel->type) {
+            return $value;
+        }
+
         // Get old alias
         $oldAlias = $this->generateRedirectUrl($pageModel, $currentAlias);
 

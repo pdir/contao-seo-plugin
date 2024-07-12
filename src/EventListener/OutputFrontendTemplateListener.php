@@ -26,16 +26,14 @@ use Contao\PageModel;
 use Contao\StringUtil;
 use Contao\System;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 #[AsHook('outputFrontendTemplate')]
 class OutputFrontendTemplateListener
 {
-    private $security;
-
-    public function __construct(Security $security)
-    {
-        $this->security = $security;
+    public function __construct(
+        private readonly AuthorizationCheckerInterface $security
+    ) {
     }
     private string $assetsDir = 'bundles/pdircontaoseoplugin';
 
@@ -51,7 +49,11 @@ class OutputFrontendTemplateListener
 
         $user = BackendUser::getInstance();
 
-        // is not admin or no access is granted
+        if (null === $user) {
+            return $buffer;
+        }
+
+        // Is not admin or no access is granted
         if (!$user->isAdmin && !$this->security->isGranted('contao_user.pdirSeoPlugin', 'canUseToolbar')) {
             return $buffer;
         }

@@ -19,11 +19,11 @@
     },
     "require": {
         "php": "^8.1",
-        "contao/core-bundle": "^4.13 ||^5.0",
+        "contao/core-bundle": "^4.13 || ^5.0",
         "pdir/contao-webtools": "^1.5",
-        "symfony/config": "^5.4 || ^6.2",
-        "symfony/dependency-injection": "^5.4 || ^6.2",
-        "symfony/http-kernel": "^5.4 || ^6.2",
+        "symfony/config": "^5.4 || ^6.0 || ^7.0",
+        "symfony/dependency-injection": "^5.4 || ^6.0 || ^7.0",
+        "symfony/http-kernel": "^5.4 || ^6.0 || ^7.0",
         "terminal42/contao-url-rewrite": "^1.7",
         "composer-runtime-api": "^2.1"
     },
