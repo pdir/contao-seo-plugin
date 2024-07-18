@@ -16,6 +16,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+$GLOBALS['TL_LANG']['tl_user']['pdirSeoPlugin_legend'] = 'SEO plugin settings';
 $GLOBALS['TL_LANG']['tl_user']['pdirSeoPlugin'] = ['Contao SEO Plugin permissions', 'Here you can define the Contao SEO Plugin permissions.'];
 $GLOBALS['TL_LANG']['tl_user']['pdirSeoPluginOptions']['canUseToolbar'] = 'Can use SEO Toolbar in the frontend';
 $GLOBALS['TL_LANG']['tl_user']['pdirSeoPluginRewriteWidget'] = ['Enable automatic URL rewrite rules', '<span style="color:red;">(Experimental)</span> Enables the URL rewrite rules widget in the page structure, messages and events.'];

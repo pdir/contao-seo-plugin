@@ -16,5 +16,6 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+$GLOBALS['TL_LANG']['tl_user_group']['pdirSeoPlugin_legend'] = 'SEO plugin settings';
 $GLOBALS['TL_LANG']['tl_user_group']['pdirSeoPlugin'] = ['Contao SEO Plugin permissions', 'Here you can define the Contao SEO Plugin permissions.'];
 $GLOBALS['TL_LANG']['tl_user_group']['pdirSeoPluginOptions']['canUseToolbar'] = 'Can use SEO Toolbar in the frontend';
