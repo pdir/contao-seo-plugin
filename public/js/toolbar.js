@@ -434,7 +434,7 @@ function indexNow () {
 }
 
 async function sendUrlToSearchEngine (engine) {
-  let url = window.location.protocol + "//" + window.location.host+'/_indexNow/send?engine='+engine+'&url='+cspCurrentUrl+'&key=indexNow'+cspIndexNowKey;
+  let url = window.location.protocol+"//"+window.location.host+'/_indexNow/send?engine='+engine+'&url='+cspCurrentUrl+'&key=indexNow'+cspIndexNowKey;
   const response = await fetch(url);
   const res = await response;
   // @todo implement error handling

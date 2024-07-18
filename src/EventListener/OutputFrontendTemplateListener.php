@@ -54,14 +54,14 @@ class OutputFrontendTemplateListener
         }
 
         // Is not admin or no access is granted
-        if (!$user->isAdmin && !$this->security->isGranted('contao_user.pdirSeoPlugin', 'canUseToolbar')) {
+        if (!$user->isAdmin && !$user->pdirSeoPlugin) { // $this->security->isGranted('contao_user.pdirSeoPlugin', 'canUseToolbar')) {
             return $buffer;
         }
 
         global $objPage;
         $rootPage = PageModel::findOneById($objPage->rootId);
 
-        if (str_contains($template, 'fe_page')) {
+        if (\str_contains($template, 'fe_page')) {
 
             $mainKeyword = $objPage->contaoSeoMainKeyword;
             $secondaryKeywords = $objPage->contaoSeoSecondaryKeywords;
