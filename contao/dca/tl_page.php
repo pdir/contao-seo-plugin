@@ -89,5 +89,3 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoSecondaryKeywords'] = [
     'eval' => ['mandatory'=>false, 'basicEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
     'sql' => "varchar(255) NOT NULL default ''"
 ];
-
-# $GLOBALS['TL_DCA']['tl_page']['fields']['urlRewriteList']['eval'] = ['tl_class'=>''];

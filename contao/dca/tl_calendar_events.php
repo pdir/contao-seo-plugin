@@ -18,6 +18,10 @@ declare(strict_types=1);
 
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
 
+if(!isset($GLOBALS['TL_DCA']['tl_calendar_events'])) {
+    return;
+}
+
 // Add to title legend
 PaletteManipulator::create()
     ->addField('urlRewriteList', 'author')

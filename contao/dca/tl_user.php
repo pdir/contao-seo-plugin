@@ -25,8 +25,6 @@ PaletteManipulator::create()
     ->applyToPalette('custom', 'tl_user')
 ;
 
-#$GLOBALS['TL_DCA']['tl_user']['palettes']['default'] = preg_replace('(([,;}]useCE)([,;{]))i', '$1,rocksolidFrontendHelper,rocksolidFrontendHelperLightbox$2', $GLOBALS['TL_DCA']['tl_user']['palettes']['default']);
-
 $GLOBALS['TL_DCA']['tl_user']['fields']['pdirSeoPlugin'] = [
     'exclude' => true,
     'inputType' => 'checkbox',
