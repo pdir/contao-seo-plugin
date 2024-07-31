@@ -87,7 +87,7 @@ class AliasSaveListener
         $rewrite->type = 'basic';
         $rewrite->priority = 0;
         $rewrite->inactice = 0;
-        $rewrite->requestPath = '/'.$currentAlias;
+        $rewrite->requestPath = '/'.$currentAlias.$this->rootPage->urlSuffix?? '';
         $rewrite->responseCode = 301;
         $rewrite->responseUri = $newAlias;
         $rewrite->tstamp = time();

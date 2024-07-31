@@ -28,16 +28,18 @@ use Contao\PageModel;
 
 trait BackendListenerTrait
 {
+    private PageModel $rootPage;
+
     public function __construct(
         private readonly ContaoFramework $framework
     ) {
     }
-    public function generateRedirectUrl($pageModel, $alias): string
+    public function generateRedirectUrl(PageModel $pageModel, $alias): string
     {
-        $rootPage = PageModel::findById($pageModel->rootId);
+        $this->rootPage = PageModel::findById($pageModel->rootId);
         $currentUrl = '';
 
-        if (isset($rootPage->dns) && '' !== $rootPage->dns) {
+        if (isset($this->rootPage->dns) && '' !== $this->rootPage->dns) {
 
             if ($pageModel->rootUseSSL) {
                 $currentUrl .= 'https://';
@@ -47,10 +49,10 @@ trait BackendListenerTrait
                 $currentUrl .= 'http://';
             }
 
-            $currentUrl .= $rootPage->dns;
+            $currentUrl .= $this->rootPage->dns;
         }
 
-        $currentUrl .= '/'.$alias.$rootPage->urlSuffix?? '';
+        $currentUrl .= '/'.$alias.$this->rootPage->urlSuffix?? '';
 
         return $currentUrl;
     }
