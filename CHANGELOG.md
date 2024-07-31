@@ -10,7 +10,7 @@ Types of changes
     Security in case of vulnerabilities.
 )
 
-## [1.0.0](https://github.com/pdir/contao-seo-plugin/tree/1.0.0) - 2024-06-12
+## [1.0.0](https://github.com/pdir/contao-seo-plugin/tree/1.0.0) - 2024-07-31
 
 first release
 
