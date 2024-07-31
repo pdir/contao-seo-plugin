@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 namespace Pdir\ContaoSeoPlugin\Controller;
 
+use Contao\BackendUser;
 use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\PageModel;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -41,16 +42,29 @@ class IndexNowController
     #[Route('/send', name: 'indexNow_send', methods: ['GET'])]
     public function sendAction(Request $request): Response
     {
+        $user = BackendUser::getInstance();
+
+        if (null === $user || !$user->isAdmin && !$user->pdirSeoPlugin) {
+            return new JsonResponse([
+                'message' => 'Not Allowed!',
+                'code' => 405,
+            ], 405);
+        }
+
         $url = $request->query->get('url');
         $engine = $request->query->get('engine');
         $key = $request->query->get('key');
+        $keyLocation = $request->query->get('keyLocation');
 
         if (!$url && !$engine && !$key) {
-            return new Response('Nothing to do!');
+            return new JsonResponse([
+                'message' => 'Nothing to do!',
+                'code' => 204,
+            ], 204);
         }
 
         // Generate endpoint url from params
-        $endpointUrl = $this->generateEndpointUrl($engine, $url, $key);
+        $endpointUrl = $this->generateEndpointUrl($engine, $url, $key, $keyLocation);
 
         // Engine is not supported
         if (null === $endpointUrl) {
@@ -73,10 +87,17 @@ class IndexNowController
         ], $result[0]);
     }
 
-    private function generateEndpointUrl(string $engine, string $url, string $key): ?string
+    private function generateEndpointUrl(string $engine, string $url, string $key, ?string $keyLocation): ?string
     {
         if (isset(self::SEARCH_ENGINES[$engine])) {
-            return 'https://'.self::SEARCH_ENGINES[$engine].'/indexnow?url='.$url.'&key=indexNow'.$key;
+            $endpoint = 'https://'.self::SEARCH_ENGINES[$engine].'/indexnow?url='.$url.'&key=indexNow'.$key;
+
+            // Add key location if needed
+            if ($keyLocation) {
+                $endpoint .= '&keyLocation='.$keyLocation;
+            }
+
+            return $endpoint;
         }
 
         return null;
@@ -104,7 +125,8 @@ class IndexNowController
         return [$code, $errors?? null, $result];
     }
 
-    private function isJson($string) {
+    private function isJson($string): bool
+    {
         json_decode($string);
         return json_last_error() === JSON_ERROR_NONE;
     }

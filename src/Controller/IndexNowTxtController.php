@@ -55,6 +55,9 @@ class IndexNowTxtController
             throw new NotFoundHttpException();
         }
 
-        return new Response('indexNow'.$rootPage->contaoSeoIndexNowKey);
+        $response  = new Response('indexNow'.$rootPage->contaoSeoIndexNowKey , 200);
+        $response->headers->set('Content-Type', 'text/plain');
+
+        return $response;
     }
 }
