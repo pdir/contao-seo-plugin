@@ -10,6 +10,10 @@ Types of changes
     Security in case of vulnerabilities.
 )
 
+## [1.0.1](https://github.com/pdir/contao-seo-plugin/tree/1.0.1) - 2024-08-01
+
+- [Fixed] Fix for Contao 5.4 root page recognition
+
 ## [1.0.0](https://github.com/pdir/contao-seo-plugin/tree/1.0.0) - 2024-07-31
 
 first release
