@@ -28,7 +28,7 @@ use Contao\PageModel;
 
 trait BackendListenerTrait
 {
-    private PageModel $rootPage;
+    private PageModel|null $rootPage;
 
     public function __construct(
         private readonly ContaoFramework $framework
@@ -36,7 +36,7 @@ trait BackendListenerTrait
     }
     public function generateRedirectUrl(PageModel $pageModel, $alias): string
     {
-        $this->rootPage = PageModel::findById($pageModel->rootId);
+        $this->rootPage = PageModel::findById($pageModel->rootId?? $pageModel->loadDetails()->rootId);
         $currentUrl = '';
 
         if (isset($this->rootPage->dns) && '' !== $this->rootPage->dns) {
