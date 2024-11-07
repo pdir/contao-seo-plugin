@@ -70,7 +70,7 @@ class OutputFrontendTemplateListener
             // check if current page is a newsreader
             $alias = Input::get('auto_item');
 
-            if (isset($alias) && InstalledVersions::isInstalled('contao/news-bundle')) {
+            if (\isset($alias) && InstalledVersions::isInstalled('contao/news-bundle')) {
   	        $newsModel = NewsModel::findBy('alias', $alias);
 
 		if (null !== $newsModel) {
@@ -79,7 +79,7 @@ class OutputFrontendTemplateListener
 		}
             }
 
-            $engines = json_encode(StringUtil::deserialize($rootPage->contaoSeoIndexNowEngines));
+            $engines = \json_encode(StringUtil::deserialize($rootPage->contaoSeoIndexNowEngines));
 
             $GLOBALS['TL_JAVASCRIPT'][] = $this->assetsDir . '/js/toolbar.js';
             $GLOBALS['TL_CSS'][] = $this->assetsDir . '/scss/toolbar.scss|static';
