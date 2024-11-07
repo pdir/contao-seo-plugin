@@ -10,6 +10,10 @@ Types of changes
     Security in case of vulnerabilities.
 )
 
+## [1.0.2](https://github.com/pdir/contao-seo-plugin/tree/1.0.2) - 2024-11-07
+
+- [Fixed] Add check for contao/news-bundle in OutputFrontendTemplateListener [#2](https://github.com/pdir/contao-seo-plugin/pull/2) 🤗 [lukasbableck](https://github.com/lukasbableck)
+
 ## [1.0.1](https://github.com/pdir/contao-seo-plugin/tree/1.0.1) - 2024-08-01
 
 - [Fixed] Fix for Contao 5.4 root page recognition
