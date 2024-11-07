@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 namespace Pdir\ContaoSeoPlugin\EventListener;
 
+use Composer\InstalledVersions;
 use Contao\BackendUser;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Contao\Input;
@@ -70,11 +71,13 @@ class OutputFrontendTemplateListener
             $alias = Input::get('auto_item');
 
             if (isset($alias)) {
-                $newsModel = NewsModel::findBy('alias', $alias);
+				if (InstalledVersions::isInstalled('contao/news-bundle')) {
+					$newsModel = NewsModel::findBy('alias', $alias);
 
-                if (null !== $newsModel) {
-                    $mainKeyword = $newsModel->contaoSeoMainKeyword;
-                    $secondaryKeywords = $newsModel->contaoSeoSecondaryKeywords;
+					if (null !== $newsModel) {
+						$mainKeyword = $newsModel->contaoSeoMainKeyword;
+						$secondaryKeywords = $newsModel->contaoSeoSecondaryKeywords;
+					}
                 }
             }
 
