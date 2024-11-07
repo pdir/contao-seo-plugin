@@ -70,15 +70,13 @@ class OutputFrontendTemplateListener
             // check if current page is a newsreader
             $alias = Input::get('auto_item');
 
-            if (isset($alias)) {
-				if (InstalledVersions::isInstalled('contao/news-bundle')) {
-					$newsModel = NewsModel::findBy('alias', $alias);
+            if (isset($alias) && InstalledVersions::isInstalled('contao/news-bundle')) {
+  	        $newsModel = NewsModel::findBy('alias', $alias);
 
-					if (null !== $newsModel) {
-						$mainKeyword = $newsModel->contaoSeoMainKeyword;
-						$secondaryKeywords = $newsModel->contaoSeoSecondaryKeywords;
-					}
-                }
+		if (null !== $newsModel) {
+		    $mainKeyword = $newsModel->contaoSeoMainKeyword;
+		    $secondaryKeywords = $newsModel->contaoSeoSecondaryKeywords;
+		}
             }
 
             $engines = json_encode(StringUtil::deserialize($rootPage->contaoSeoIndexNowEngines));
