@@ -13,3 +13,5 @@
 /runner/node_modules
 /runner/.env
 /runner/.env.local
+
+/.idea/*

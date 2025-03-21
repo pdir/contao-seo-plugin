@@ -21,11 +21,10 @@ use Contao\CoreBundle\DataContainer\PaletteManipulator;
 // Add new legend
 PaletteManipulator::create()
     ->addLegend('contao_seo_legend', 'meta_legend')
-    ->addField(['contaoSeoActivateErrorLog', 'contaoSeoActivateIndexNow'], 'contao_seo_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField(['contaoSeoActivateErrorLog', 'contaoSeoActivateIndexNow', 'contaoSeoActivateSitemap'], 'contao_seo_legend', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('root', 'tl_page')
     ->applyToPalette('rootfallback', 'tl_page')
 ;
-
 
 // Add to routing legend
 PaletteManipulator::create()
@@ -42,7 +41,9 @@ PaletteManipulator::create()
 
 
 $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'contaoSeoActivateIndexNow';
+$GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'contaoSeoActivateSitemap';
 $GLOBALS['TL_DCA']['tl_page']['subpalettes']['contaoSeoActivateIndexNow'] = 'contaoSeoIndexNowEngines,contaoSeoIndexNowKey';
+$GLOBALS['TL_DCA']['tl_page']['subpalettes']['contaoSeoActivateSitemap'] = 'contaoSeoSitemapName,contaoSeoAddSitemapToRobotsTxt';
 
 // add fields
 $GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoToolbar'] = [
@@ -88,4 +89,23 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoSecondaryKeywords'] = [
     'inputType' => 'text',
     'eval' => ['mandatory'=>false, 'basicEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
     'sql' => "varchar(255) NOT NULL default ''"
+];
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoActivateSitemap'] = [
+    'inputType' => 'checkbox',
+    'eval' => ['doNotCopy'=>true, 'submitOnChange'=>true, 'tl_class' => 'w50 clr'],
+    'sql' => ['type' => 'boolean', 'default' => false]
+];
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoSitemapName'] = [
+    'search' => true,
+    'inputType' => 'text',
+    'eval' => ['mandatory'=>true, 'minlength' => 1, 'maxlength'=>128, 'tl_class'=>'w50'],
+    'sql' => "varchar(128) NOT NULL default ''"
+];
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoAddSitemapToRobotsTxt'] = [
+    'inputType' => 'checkbox',
+    'eval' => ['doNotCopy'=>true, 'submitOnChange'=>true, 'tl_class' => 'w50 clr'],
+    'sql' => ['type' => 'boolean', 'default' => false]
 ];

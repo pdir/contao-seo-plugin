@@ -1,5 +1,6 @@
 <?php
 
+use Pdir\ContaoSeoPlugin\Backend\Automator;
 use Pdir\ContaoSeoPlugin\Util\ErrorLogAutomator;
 use Pdir\ContaoSeoPlugin\Model\ErrorLogModel;
 use Pdir\ContaoSeoPlugin\Model\UrlRewriteModel;
@@ -28,6 +29,8 @@ $GLOBALS['TL_PURGE']['tables']['error_log'] = [
     'callback' => [ErrorLogAutomator::class, 'purgeErrorLog'],
     'affected' => ['tl_error_log']
 ];
+
+$GLOBALS['TL_PURGE']['custom']['sitemap'] = ['callback' => [Automator::class, 'generateSitemapFiles']];
 
 /*
  * Permissions
