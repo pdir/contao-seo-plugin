@@ -5,12 +5,13 @@ We help website owners and editorial teams to get more traffic from search engin
 helps users to optimize their content and make it easy to find for both users and search engines. With the Contao SEO
 plugin, you have the most important on-page factors directly in view.
 
-### Current range of functions of version 1.0.0
+### Current range of functions of version 1.1.0
 - SEO analysis of 8 typical on-page problems
 - IndexNow function for all known providers [indexnow.org](https://www.indexnow.org/faq)
 - Possibility to activate a 404 error log
 - Monitoring of alias changes (experimental, must be activated in user profile)
 - Display existing URL redirects in the alias view
+- Specify the percentage of content created with artificial intelligence (AI)
 
 ### An outlook on further functions
 - At least 30 additional tests for on-page recommendations
