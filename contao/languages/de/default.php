@@ -9,3 +9,5 @@ $GLOBALS['TL_LANG']['tl_page']['responseCode'] = 'Antwort-Statuscode';
 $GLOBALS['TL_LANG']['tl_page']['rewriteStatusActive'] = 'Aktiv';
 $GLOBALS['TL_LANG']['tl_page']['rewriteStatusInactive'] = 'Inaktiv';
 $GLOBALS['TL_LANG']['tl_page']['rewriteListNoItems'] = 'Es wurden keine Weiterleitungen gefunden.';
+
+$GLOBALS['TL_LANG']['MSC']['contaoSeoActiveCondition'] = 'Es ist mindestens eine Bedingung aktiv.';

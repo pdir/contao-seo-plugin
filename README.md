@@ -5,12 +5,13 @@ We help website owners and editorial teams to get more traffic from search engin
 helps users to optimize their content and make it easy to find for both users and search engines. With the Contao SEO
 plugin, you have the most important on-page factors directly in view.
 
-### Current range of functions of version 1.0.0
+### Current range of functions of version 1.1.0
 - SEO analysis of 8 typical on-page problems
 - IndexNow function for all known providers [indexnow.org](https://www.indexnow.org/faq)
 - Possibility to activate a 404 error log
 - Monitoring of alias changes (experimental, must be activated in user profile)
 - Display existing URL redirects in the alias view
+- Show or hide the content of your website based on multiple conditions
 
 ### An outlook on further functions
 - At least 30 additional tests for on-page recommendations
@@ -47,6 +48,9 @@ Display existing URL redirects in the alias view
 ![404 error log](_docs/screenshots/404-error-log.png)
 404 error log
 
+![404 error log](_docs/screenshots/conditional_content.png)
+Conditional content
+
 ## German
 
 Wir helfen Website-Betreibern und Redaktionsteams, mehr Traffic von Suchmaschinen wie Google zu erhalten. Das Contao SEO
@@ -59,6 +63,7 @@ Mit dem Contao SEO Plugin hast du die wichtigsten OnPage Faktoren direkt im Blic
 - Möglichkeit, ein 404-Fehlerprotokoll zu aktivieren
 - Überwachung von Alias-Änderungen (experimentell, muss im Benutzerprofil aktiviert werden)
 - Anzeige bestehender URL-Weiterleitungen in der Alias-Ansicht
+- Zeige oder verberge den Inhalt deiner Website auf der Grundlage mehrerer Bedingungen
 
 ### Ein Ausblick auf weitere Funktionen
 - Mindestens 30 weitere Tests für Onpage Empfehlungen

@@ -10,6 +10,10 @@ Types of changes
     Security in case of vulnerabilities.
 )
 
+## [1.1.0](https://github.com/pdir/contao-seo-plugin/tree/1.1.0) - 2025-03-21
+
+- [Added] Show or hide the content of your website based on multiple conditions
+
 ## [1.0.3](https://github.com/pdir/contao-seo-plugin/tree/1.0.3) - 2024-11-09
 
 - [Fixed] do not use global namespace in OutputFrontendTemplateListener

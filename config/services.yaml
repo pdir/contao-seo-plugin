@@ -24,3 +24,9 @@ services:
 
   Pdir\ContaoSeoPlugin\EventListener\OutputFrontendTemplateListener:
     public: true
+
+  Pdir\ContaoSeoPlugin\EventListener\IsVisibleElementListener:
+    public: true
+    arguments:
+      - '@request_stack'
+      - '@contao.routing.scope_matcher'
