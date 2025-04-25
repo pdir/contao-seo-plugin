@@ -14,3 +14,6 @@ $GLOBALS['TL_LANG']['tl_page']['naver'] = 'Naver';
 $GLOBALS['TL_LANG']['tl_page']['seznam.cz'] = 'Seznam.cz';
 $GLOBALS['TL_LANG']['tl_page']['yandex'] = 'Yandex';
 $GLOBALS['TL_LANG']['tl_page']['yep'] = 'Yep';
+$GLOBALS['TL_LANG']['tl_page']['contaoSeoActivateSitemap'] = ['Sitemap aktivieren', 'Wähle hier ob das SEO Plugin eine eigene Sitemap erstellen soll.'];
+$GLOBALS['TL_LANG']['tl_page']['contaoSeoSitemapName'] = ['Sitemap-Name', 'Gib hier einen Namen für die Sitemap an. Bsp. [SITEMAP-NAME]sitemap.xml bzw. [SITEMAP-NAME]sitemap-index.xml.D ie Sitemap-Dateien werden im Ordner share abgelegt.'];
+$GLOBALS['TL_LANG']['tl_page']['contaoSeoAddSitemapToRobotsTxt'] = ['Sitemap zur robots.txt hinzufügen', 'Wähle hier ob die Sitemap zur robots.txt hinzugefügt werden soll.'];

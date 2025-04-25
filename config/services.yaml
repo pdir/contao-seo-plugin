@@ -24,3 +24,12 @@ services:
 
   Pdir\ContaoSeoPlugin\EventListener\OutputFrontendTemplateListener:
     public: true
+
+  Pdir\ContaoSeoPlugin\EventListener\RemoveOldFeedsListener:
+    public: true
+
+  Pdir\ContaoSeoPlugin\EventListener\RobotsTxtListener:
+    public: true
+
+  Pdir\ContaoSeoPlugin\Backend\Automator:
+    public: true
