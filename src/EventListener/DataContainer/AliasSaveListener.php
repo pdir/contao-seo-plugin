@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * pdir contao seo plugin for Contao Open Source CMS
  *
- * Copyright (c) 2024 pdir / digital agentur // pdir GmbH
+ * Copyright (c) 2025 pdir / digital agentur // pdir GmbH
  *
  * @package    contao-seo-plugin
  * @link       https://pdir.de/contao-seo-plugin

@@ -14,3 +14,5 @@ $GLOBALS['TL_LANG']['tl_page']['naver'] = 'Naver';
 $GLOBALS['TL_LANG']['tl_page']['seznam.cz'] = 'Seznam.cz';
 $GLOBALS['TL_LANG']['tl_page']['yandex'] = 'Yandex';
 $GLOBALS['TL_LANG']['tl_page']['yep'] = 'Yep';
+$GLOBALS['TL_LANG']['tl_page']['contaoSeoActivateSearchStats'] = ['Activate search statistics?', 'Select here whether the search statistics function should be activated.'];
+$GLOBALS['TL_LANG']['tl_page']['contaoSeoXhrSearchHit'] = ['Activate XHR?', 'Select here whether the search statistics function should be performed via XHR (XMLHttpRequest).'];

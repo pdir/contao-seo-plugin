@@ -3,15 +3,13 @@
 declare(strict_types=1);
 
 /*
- * social feed bundle for Contao Open Source CMS
+ * pdir contao seo plugin for Contao Open Source CMS
  *
- * Copyright (c) 2024 pdir / digital agentur // pdir GmbH
+ * Copyright (c) 2025 pdir / digital agentur // pdir GmbH
  *
- * @package    social-feed-bundle
- * @link       https://github.com/pdir/social-feed-bundle
- * @license    http://www.gnu.org/licences/lgpl-3.0.html LGPL
- * @author     Mathias Arzberger <develop@pdir.de>
- * @author     Philipp Seibt <develop@pdir.de>
+ * @package    contao-seo-plugin
+ * @link       https://pdir.de/contao-seo-plugin
+ * @license    LGPL-3.0-or-later
  * @author     pdir GmbH <https://pdir.de>
  *
  * For the full copyright and license information, please view the LICENSE

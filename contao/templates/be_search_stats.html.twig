@@ -1,0 +1,96 @@
+{% extends '@Contao/be_main.html5' %}
+
+{% block main %}
+
+  <main id="main" aria-labelledby="main_headline" data-controller="contao--search-stats">
+
+    {# Headline #}
+    <h1 id="main_headline">{{ headline }}</h1>
+
+    <section id="top-search-stats" class="content chrome">
+      <div class="box">
+        <h3>Top 20 Suchbegriffe</h3>
+        <canvas id="searchChart"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        const ctx = document.getElementById('searchChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: {{ topKeywords|json_encode()|raw }},
+          datasets: [{
+            label: 'Suchhäufigkeit',
+            data: {{ topCounts|json_encode()|raw }},
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+            plugins: {
+              legend: { display: false }
+            }
+          }
+        });
+      </script>
+    </section>
+    <section class="search-stats-list content chrome">
+      <div class="box">
+        <h2>Alle Suchbegriffe</h2>
+        {% if allKeywords is null %}
+          <p>{{ 'tl_search_stats.searchStatsListNoItems'|trans }}</p>
+        {% endif %}
+        <ul class="stats-list">
+          {% for keyword in allKeywords %}
+            <li class="item">{{ keyword.keywords }} <span style="color: #f47c00">({{ keyword.count }})</span></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  </main>
+  <style>
+    .box {
+      padding: 10px;
+    }
+
+    #searchChart {
+      width: 100%;
+      max-height: 400px;
+    }
+
+    .stats-list {
+      font-family: 'Gloria Hallelujah', cursive;
+      font-size: 1.4rem;
+      line-height: 2.5rem;
+      width: 600px;
+      max-width: 100%;
+      background: white;
+      box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 0.15);
+      padding: 0;
+      margin: 0 0 0 80px;
+      border-radius: 0.1rem;
+    }
+
+    .stats-list ul * {
+      box-sizing: border-box;
+    }
+
+    .stats-list li {
+      padding: 0;
+      list-style: decimal;
+    }
+
+    .stats-list li:not(:last-child) {
+      border-bottom: 1px solid #f47c00;
+    }
+
+    .stats-list li:first-child {
+      margin-top: 1rem;
+    }
+
+    .stats-list li:last-child {
+      margin-bottom: 1rem;
+    }
+  </span>
+{% endblock %}

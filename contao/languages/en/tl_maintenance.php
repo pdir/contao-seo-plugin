@@ -3,3 +3,4 @@
 declare(strict_types=1);
 
 $GLOBALS['TL_LANG']['tl_maintenance_jobs']['error_log'] = ['Delete 404 error log', 'Clears the table tl_error_log, in which 404 error messages are stored. The data will be permanently deleted.'];
+$GLOBALS['TL_LANG']['tl_maintenance_jobs']['search_stats'] = ['Delete search statistics', 'Empties the tl_search_stats table, where search queries are stored. This permanently deletes the data.'];

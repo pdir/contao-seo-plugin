@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * pdir contao seo plugin for Contao Open Source CMS
  *
- * Copyright (c) 2024 pdir / digital agentur // pdir GmbH
+ * Copyright (c) 2025 pdir / digital agentur // pdir GmbH
  *
  * @package    contao-seo-plugin
  * @link       https://pdir.de/contao-seo-plugin
@@ -30,8 +30,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[AsController]
 class IndexNowTxtController
 {
-    public function __construct(
-        ContaoFramework $framework
+    public function __construct(ModuleModel $model
         # private readonly PageFinder $pageFinder
     ) {
         $this->framework = $framework;

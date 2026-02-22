@@ -3,8 +3,12 @@ services:
     autoconfigure: true
     autowire: true
 
-  pdir.contao_seo_plugin.listener.generate_page:
-    class: Pdir\ContaoSeoPlugin\EventListener\GeneratePageListener
+  pdir.search_stats_helper:
+    class: Pdir\ContaoSeoPlugin\Service\SearchStatsHelper
+    public: true
+    arguments:
+      - '@database_connection'
+      - '%kernel.secret%'
 
   pdir.contao_seo_plugin.listener.data_container.backend_usability:
     class: Pdir\ContaoSeoPlugin\EventListener\DataContainer\BackendUsabilityListener
@@ -21,6 +25,23 @@ services:
     arguments:
       - '@contao.framework'
       - '@twig'
+
+  Pdir\ContaoSeoPlugin\Controller\SearchStatsController:
+    calls:
+      - [ setContainer, [ "@service_container" ] ]
+
+  Pdir\ContaoSeoPlugin\Controller\SearchHitController:
+    arguments:
+      - '@pdir.search_stats_helper'
+    tags: ['controller.service_arguments']
+
+  Pdir\ContaoSeoPlugin\EventListener\BackendMenuListener:
+
+  Pdir\ContaoSeoPlugin\EventListener\GeneratePageListener:
+    arguments:
+      - '@pdir.search_stats_helper'
+
+  Pdir\ContaoSeoPlugin\EventListener\IsVisibleElementListener:
 
   Pdir\ContaoSeoPlugin\EventListener\OutputFrontendTemplateListener:
     public: true

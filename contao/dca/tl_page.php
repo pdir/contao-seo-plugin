@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * pdir contao seo plugin for Contao Open Source CMS
  *
- * Copyright (c) 2024 pdir / digital agentur // pdir GmbH
+ * Copyright (c) 2025 pdir / digital agentur // pdir GmbH
  *
  * @package    contao-seo-plugin
  * @link       https://pdir.de/contao-seo-plugin
@@ -21,7 +21,7 @@ use Contao\CoreBundle\DataContainer\PaletteManipulator;
 // Add new legend
 PaletteManipulator::create()
     ->addLegend('contao_seo_legend', 'meta_legend')
-    ->addField(['contaoSeoActivateErrorLog', 'contaoSeoActivateIndexNow'], 'contao_seo_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField(['contaoSeoActivateErrorLog', 'contaoSeoActivateIndexNow', 'contaoSeoActivateSearchStats'], 'contao_seo_legend', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('root', 'tl_page')
     ->applyToPalette('rootfallback', 'tl_page')
 ;
@@ -40,11 +40,15 @@ PaletteManipulator::create()
     ->applyToPalette('regular', 'tl_page')
 ;
 
-
+# contaoSeoActivateIndexNow
 $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'contaoSeoActivateIndexNow';
 $GLOBALS['TL_DCA']['tl_page']['subpalettes']['contaoSeoActivateIndexNow'] = 'contaoSeoIndexNowEngines,contaoSeoIndexNowKey';
 
-// add fields
+# contaoSeoActivateSearchStats
+$GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'contaoSeoActivateSearchStats';
+$GLOBALS['TL_DCA']['tl_page']['subpalettes']['contaoSeoActivateSearchStats'] = 'contaoSeoXhrSearchHit';
+
+// Add fields
 $GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoToolbar'] = [
     'exclude' => true,
 ];
@@ -88,4 +92,16 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoSecondaryKeywords'] = [
     'inputType' => 'text',
     'eval' => ['mandatory'=>false, 'basicEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
     'sql' => "varchar(255) NOT NULL default ''"
+];
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoActivateSearchStats'] = [
+    'inputType' => 'checkbox',
+    'eval' => ['doNotCopy'=>true, 'submitOnChange'=>true, 'tl_class' => 'w50 clr'],
+    'sql' => ['type' => 'boolean', 'default' => false]
+];
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['contaoSeoXhrSearchHit'] = [
+    'inputType' => 'checkbox',
+    'eval' => ['doNotCopy'=>true, 'submitOnChange'=>true, 'tl_class' => 'w50'],
+    'sql' => ['type' => 'boolean', 'default' => false]
 ];
