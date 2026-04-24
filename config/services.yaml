@@ -5,6 +5,8 @@ services:
 
   pdir.contao_seo_plugin.listener.generate_page:
     class: Pdir\ContaoSeoPlugin\EventListener\GeneratePageListener
+    arguments:
+      $injectionLocation: '%pdir_contao_seo.faq_schema_injection_location%'
 
   pdir.contao_seo_plugin.listener.data_container.backend_usability:
     class: Pdir\ContaoSeoPlugin\EventListener\DataContainer\BackendUsabilityListener

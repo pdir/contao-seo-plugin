@@ -13,3 +13,6 @@
 /runner/node_modules
 /runner/.env
 /runner/.env.local
+
+.DS_Store
+.idea
