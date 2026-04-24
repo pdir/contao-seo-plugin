@@ -1,7 +1,7 @@
 {
     "name": "pdir/contao-seo-plugin",
     "description": "SEO plugin for Contao CMS",
-    "keywords":["seo", "indexnow","marketing","ranking","pagespeed", "contao", "search engine optimization", "onpage", "content", "tips", "alias", "404", "redirects", "witerleitung"],
+    "keywords":["seo", "indexnow","marketing","ranking","pagespeed", "contao", "search engine optimization", "onpage", "content", "tips", "alias", "404", "redirects", "witerleitung", "faq schema.org", "JSON-LD"],
     "license":"LGPL-3.0-or-later",
     "type": "contao-bundle",
     "authors": [
@@ -21,9 +21,9 @@
         "php": "^8.1",
         "contao/core-bundle": "^4.13 || ^5.0",
         "pdir/contao-webtools": "^1.5",
-        "symfony/config": "^5.4 || ^6.0 || ^7.0",
-        "symfony/dependency-injection": "^5.4 || ^6.0 || ^7.0",
-        "symfony/http-kernel": "^5.4 || ^6.0 || ^7.0",
+        "symfony/config": "^6.0 || ^7.0 || ^8.0",
+        "symfony/dependency-injection": "^6.0 || ^7.0 || ^8.0",
+        "symfony/http-kernel": "^6.0 || ^7.0",
         "terminal42/contao-url-rewrite": "^1.7",
         "composer-runtime-api": "^2.1"
     },

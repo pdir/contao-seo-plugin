@@ -12,6 +12,12 @@ Types of changes
 
 ## [1.0.3](https://github.com/pdir/contao-seo-plugin/tree/1.0.3) - 2024-11-09
 
+- [Added] Adds FAQ schema.org JSON-LD feature from marked content elements
+- [Added] Compatibility with Contao 5.6 and 5.7
+- [Removed] Symfony 5 support
+
+## [1.0.3](https://github.com/pdir/contao-seo-plugin/tree/1.0.3) - 2024-11-09
+
 - [Fixed] do not use global namespace in OutputFrontendTemplateListener
 
 ## [1.0.2](https://github.com/pdir/contao-seo-plugin/tree/1.0.2) - 2024-11-07
