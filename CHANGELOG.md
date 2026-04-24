@@ -10,11 +10,11 @@ Types of changes
     Security in case of vulnerabilities.
 )
 
-## [1.0.3](https://github.com/pdir/contao-seo-plugin/tree/1.0.3) - 2024-11-09
+## [1.1.0](https://github.com/pdir/contao-seo-plugin/tree/1.1.0) - 2025-04-24
 
 - [Added] Adds FAQ schema.org JSON-LD feature from marked content elements
 - [Added] Compatibility with Contao 5.6 and 5.7
-- [Removed] Symfony 5 support
+- [Removed] Contao 4.13 and Symfony 5 support
 
 ## [1.0.3](https://github.com/pdir/contao-seo-plugin/tree/1.0.3) - 2024-11-09
 
