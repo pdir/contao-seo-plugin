@@ -10,6 +10,10 @@ Types of changes
     Security in case of vulnerabilities.
 )
 
+## [1.0.4](https://github.com/pdir/contao-seo-plugin/tree/1.0.4) - 2026-04-22
+
+- [Fixed] Changed routing configuration from annotations to attributes in services.yaml
+
 ## [1.0.3](https://github.com/pdir/contao-seo-plugin/tree/1.0.3) - 2024-11-09
 
 - [Fixed] do not use global namespace in OutputFrontendTemplateListener
